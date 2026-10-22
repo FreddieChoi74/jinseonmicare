@@ -1,0 +1,127 @@
+/* 진선미 재가장기요양기관 전용 스타일시트 */
+
+/* 기본 리셋 및 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overscroll-behavior-y: none;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* 탭 전환 트랜지션 */
+.tab-view {
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.tab-view.hidden {
+  display: none !important;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* 터치 피드백 애니메이션 */
+.btn-press {
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+  filter: brightness(0.95);
+}
+
+/* 시니어 친화적 가독성 보강 */
+p, span, li, button, input, label {
+  word-break: keep-all;
+}
+
+/* 모바일 Safe Area 대응 */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+}
+
+/* 커스텀 라디오 / 체크 카드 스타일 */
+.choice-card input[type="radio"]:checked + div {
+  border-color: #0d402e;
+  background-color: #baeed3;
+  color: #002115;
+}
+
+/* Material Symbols 세팅 */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* 부드러운 스크롤바 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f3f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #c0c9c2;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #717973;
+}
+
+/* 펄스 애니메이션 보강 */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.5s infinite ease-in-out;
+}
+
+/* 상하 및 내부 간격 시스템 (여백 최적화) */
+.mb-space-xs { margin-bottom: 8px !important; }
+.mb-space-sm { margin-bottom: 14px !important; }
+.mb-space-md { margin-bottom: 22px !important; }
+.mb-space-lg { margin-bottom: 32px !important; }
+.mb-space-xl { margin-bottom: 40px !important; }
+
+.mt-space-xs { margin-top: 8px !important; }
+.mt-space-sm { margin-top: 14px !important; }
+.mt-space-md { margin-top: 22px !important; }
+.mt-space-lg { margin-top: 32px !important; }
+.mt-space-xl { margin-top: 40px !important; }
+
+.gap-space-xs { gap: 8px !important; }
+.gap-space-sm { gap: 14px !important; }
+.gap-space-md { gap: 20px !important; }
+.gap-space-lg { gap: 28px !important; }
+.gap-space-xl { gap: 36px !important; }
+.gap-gutter-mobile { gap: 12px !important; }
+
+.p-space-xs { padding: 8px !important; }
+.p-space-sm { padding: 14px !important; }
+.p-space-md { padding: 20px !important; }
+.p-space-lg { padding: 28px !important; }
+.p-space-xl { padding: 36px !important; }
+
+.p-margin-mobile { padding: 16px !important; }
+.px-margin-mobile { padding-left: 16px !important; padding-right: 16px !important; }
+.-mx-margin-mobile { margin-left: -16px !important; margin-right: -16px !important; }
+
+.space-y-space-xl > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(32px * calc(1 - var(--tw-space-y-reverse))) !important;
+  margin-bottom: calc(32px * var(--tw-space-y-reverse)) !important;
+}
+.space-y-space-lg > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(24px * calc(1 - var(--tw-space-y-reverse))) !important;
+  margin-bottom: calc(24px * var(--tw-space-y-reverse)) !important;
+}

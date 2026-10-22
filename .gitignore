@@ -1,0 +1,25 @@
+# 환경설정 및 민감정보
+.env
+*.env
+consult_requests.json
+
+# 오피스 및 OS 임시 파일
+~$*
+Thumbs.db
+.DS_Store
+
+# 파이썬 캐시 및 가상환경
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# 로그
+*.log
+
+# 의존성 모듈 (추후 npm 사용 시)
+node_modules/
+
+# IDE 에이전트 설정
+.agents/

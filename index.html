@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>진선미 재가장기요양기관 | 부모님을 위한 따뜻한 맞춤 돌봄</title>
+  <meta name="description" content="국민건강보험공단 지정 공식 재가장기요양기관 진선미센터. 방문요양, 방문목욕, 가족요양, 복지용구 지원 및 장기요양등급 무료 대행 신청.">
+  <meta name="keywords" content="진선미재가장기요양기관, 재가요양, 방문요양, 방문목욕, 가족요양, 장기요양등급, 노인돌봄, 요양보호사">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="진선미 재가장기요양기관">
+  <meta property="og:description" content="부모님의 평온한 일상, 가족의 마음으로 함께합니다. 1:1 맞춤 방문요양 및 등급신청 무료 지원">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Leaflet Map Library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0d402e",
+            "primary-container": "#285844",
+            "primary-fixed": "#baeed3",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#002115",
+            "secondary": "#a23f04",
+            "secondary-container": "#fe8449",
+            "secondary-fixed": "#ffdbcd",
+            "on-secondary": "#ffffff",
+            "tertiary": "#273e2e",
+            "tertiary-container": "#3d5543",
+            "tertiary-fixed": "#cee9d2",
+            "surface": "#faf9f6",
+            "surface-dim": "#dbdad7",
+            "surface-bright": "#faf9f6",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f4f3f0",
+            "surface-container": "#efeeeb",
+            "surface-container-high": "#e9e8e5",
+            "surface-container-highest": "#e3e2e0",
+            "on-surface": "#1a1c1a",
+            "on-surface-variant": "#414944",
+            "outline": "#717973",
+            "outline-variant": "#c0c9c2",
+            "background": "#faf9f6",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+          },
+          spacing: {
+            'space-xs': '8px',
+            'space-sm': '14px',
+            'space-md': '22px',
+            'space-lg': '32px',
+            'space-xl': '40px',
+            'margin-mobile': '16px',
+            'gutter-mobile': '12px'
+          },
+          boxShadow: {
+            'card': '0 4px 16px -2px rgba(13, 64, 46, 0.06)',
+            'float': '0 8px 24px -4px rgba(13, 64, 46, 0.12)',
+            'nav': '0 -4px 20px -2px rgba(40, 88, 68, 0.08)'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#faf9f6] text-[#1a1c1a] min-h-screen flex flex-col font-sans selection:bg-primary-fixed selection:text-on-primary-fixed antialiased">
+
+  <!-- Desktop Top Notification Bar -->
+  <div class="hidden md:block bg-primary text-on-primary py-2 px-6 text-xs font-medium">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+        <span>국민건강보험공단 공식지정 장기요양기관 | 2026년도 신규 어르신 맞춤돌봄 무료상담 진행 중</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>상담전화: <strong class="font-bold tracking-wider">033-662-0001</strong></span>
+        <span>운영시간: 평일 09:00 ~ 18:00 (연중무휴 상담대기)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 md:sticky w-full z-50 bg-white/95 md:bg-white/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-200">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group" onclick="switchView('home')">
+        <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold shadow-sm group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-[24px]">favorite</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-bold text-primary tracking-tight leading-tight group-hover:text-primary-container transition-colors">진선미 재가장기요양기관</span>
+          <span class="text-[11px] font-medium text-on-surface-variant leading-none">국민건강보험 장기요양 지정기관</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-1">
+        <button onclick="switchView('home')" data-nav-tab="home" class="desktop-nav-link active px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 text-primary bg-primary/10 font-bold">
+          <span class="material-symbols-outlined text-[19px]">home</span> 홈
+        </button>
+        <button onclick="switchView('services')" data-nav-tab="services" class="desktop-nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container">
+          <span class="material-symbols-outlined text-[19px]">volunteer_activism</span> 서비스안내 & 계산기
+        </button>
+        <button onclick="switchView('grade-check')" data-nav-tab="grade-check" class="desktop-nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container">
+          <span class="material-symbols-outlined text-[19px]">assignment_turned_in</span> 등급신청 & 자가진단
+        </button>
+        <button onclick="switchView('contact')" data-nav-tab="contact" class="desktop-nav-link px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container">
+          <span class="material-symbols-outlined text-[19px]">place</span> 센터소개 & 상담
+        </button>
+      </nav>
+
+      <!-- Header Action Buttons -->
+      <div class="flex items-center gap-2">
+        <a href="tel:033-662-0001" class="h-10 px-3.5 rounded-full bg-secondary text-on-secondary flex items-center gap-1.5 shadow-sm hover:bg-[#8e3703] active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[20px]">call</span>
+          <span class="text-xs sm:text-sm font-bold tracking-tight">전화상담</span>
+        </a>
+        <!-- Mobile Drawer Toggle -->
+        <button type="button" id="btn-toggle-menu" class="md:hidden w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors" aria-label="메뉴 열기">
+          <span class="material-symbols-outlined text-[26px]">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Modal -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div id="drawer-panel" class="absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+      <div>
+        <div class="flex justify-between items-center pb-4 border-b border-surface-container">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[26px]">favorite</span>
+            <span class="font-bold text-primary text-base">진선미 케어 메뉴</span>
+          </div>
+          <button id="btn-close-drawer" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container text-on-surface-variant">
+            <span class="material-symbols-outlined text-[22px]">close</span>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-2 mt-6">
+          <button onclick="switchView('home'); closeDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left font-medium text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary">home</span> 홈 화면
+          </button>
+          <button onclick="switchView('services'); closeDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left font-medium text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary">volunteer_activism</span> 서비스 안내 및 일과표
+          </button>
+          <button onclick="switchView('services', 'calc'); closeDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left font-medium text-sm text-on-surface">
+            <span class="material-symbols-outlined text-secondary">calculate</span> 본인부담금 모의계산기
+          </button>
+          <button onclick="switchView('grade-check'); closeDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left font-medium text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary">assignment_turned_in</span> 등급신청 & 3분 자가진단
+          </button>
+          <button onclick="switchView('contact'); closeDrawer();" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-surface-container text-left font-medium text-sm text-on-surface">
+            <span class="material-symbols-outlined text-primary">place</span> 센터 오시는 길 & 상담
+          </button>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-surface-container flex flex-col gap-2">
+        <a href="tel:033-662-0001" class="w-full h-12 rounded-xl bg-secondary text-white font-bold flex items-center justify-center gap-2 shadow-sm text-sm">
+          <span class="material-symbols-outlined text-[20px]">call</span> 033-662-0001 연결
+        </a>
+        <a href="https://open.kakao.com/o/glWVgATi" target="_blank" rel="noopener noreferrer" onclick="closeDrawer();" class="w-full h-12 rounded-xl bg-[#FEE500] text-[#3C1E1E] font-bold flex items-center justify-center gap-2 shadow-sm text-sm">
+          <span class="material-symbols-outlined text-[20px]">chat</span> 카카오톡 상담 (진선미 공유방)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto pt-16 md:pt-4 pb-24 md:pb-12 px-4 transition-all">
+
+        <!-- TAB 1: HOME VIEW -->
+    <div id="view-home" class="tab-view active">
+      <div class="flex flex-col w-full pb-16">
+
+        <!-- Top Intro & Header Area -->
+        <div class="pt-4 pb-2 mb-4">
+          <div class="flex items-center gap-1.5 mb-1 text-primary">
+            <span class="material-symbols-outlined text-[18px]">favorite</span>
+            <span class="font-label-md text-label-md tracking-tight font-bold">부모님을 위한 따뜻한 동행</span>
+          </div>
+          <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+            어르신의 행복한 일상,<br>
+            <span class="text-primary font-bold">진선미재가요양</span>이 함께합니다
+          </h1>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+            국민건강보험공단 공식지정 장기요양기관 · 1:1 맞춤 방문요양 · 등급신청 무료 지원
+          </p>
+        </div>
+
+        <!-- Hero Card with Caring Scene -->
+        <section class="relative w-full rounded-2xl overflow-hidden shadow-card bg-surface-container-low mb-10 sm:mb-12">
+          <div class="relative w-full h-60 sm:h-64 bg-cover bg-center" data-alt="A warm, reassuring scene of a smiling professional Korean female caregiver gently holding the hands of a peaceful senior grandmother in a cozy living room, warm morning sunlight, natural wood tones, forest pine green and soft amber color palette, highly compassionate and dignified human atmosphere" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDez-HimmClB4hJC-ayfc9pdM6dj1uKoTRHVJgDU-zapRN8fK2nXPWO6ZZnAFf0Pxee6dwbErYx6vOGHuxSc2_pzfIX80s2WyX2jVvSvd3GIJbi2rTENGsCcgxAOTPBYbDFt0URegH9Q7liVEI86atbEnXVlTdIjW9UwkubMsdBalXobi3bDLeecbJ0tUSPNgVtRJNqssuo6pdjSPg5yteYFJpp5deOqF1huVBE1yssNt3_2V2NMRsNLw')">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent flex flex-col justify-end p-5 sm:p-6">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-on-secondary font-label-md text-label-md w-fit shadow-sm mb-2.5">
+                <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                국민건강보험공단 공식 지정기관
+              </span>
+              <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary tracking-tight leading-snug">
+                부모님의 평온한 일상,<br>가족의 마음으로 곁에서 함께합니다
+              </h2>
+              <p class="font-body-sm text-body-sm text-primary-fixed mt-1.5 leading-relaxed">
+                복잡한 장기요양 등급신청 무료 대행부터 1:1 맞춤 재가요양까지
+              </p>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 flex flex-col gap-3.5 bg-surface-container-lowest">
+            <a class="w-full h-14 rounded-xl bg-secondary text-on-secondary flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] transition-transform" href="tel:033-662-0001">
+              <span class="material-symbols-outlined text-[26px]">call</span>
+              <span class="font-title-md text-title-md">무료 전화상담 (033-662-0001)</span>
+            </a>
+            <a class="w-full h-14 rounded-xl bg-[#FEE500] text-[#3C1E1E] flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] transition-transform" href="https://open.kakao.com/o/glWVgATi" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[24px]">chat_bubble</span>
+              <span class="font-title-md text-title-md font-bold">카카오톡 1:1 상담 (진선미 공유방)</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 맞춤 돌봄 서비스 4종 그리드 -->
+        <section class="w-full mb-10 sm:mb-12">
+          <div class="flex items-center justify-between mb-4 pt-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-6 rounded-full bg-primary"></span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface">맞춤 돌봄 서비스</h3>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface-variant">전문 케어 안내</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <a class="flex flex-col p-5 rounded-2xl bg-surface-container-lowest shadow-card hover:shadow-float transition-all cursor-pointer" href="#" onclick="switchView('services', 'care'); return false;">
+              <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-3.5">
+                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+              </div>
+              <div class="flex items-center gap-1.5 mb-1.5">
+                <span class="font-title-md text-title-md text-on-surface font-bold">방문요양</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                식사·투약·신체활동<br>청결 및 정서 돌봄
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary font-label-md text-label-md gap-0.5 font-bold">
+                자세히보기 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </span>
+            </a>
+            <a class="flex flex-col p-5 rounded-2xl bg-surface-container-lowest shadow-card hover:shadow-float transition-all cursor-pointer" href="#" onclick="switchView('services', 'bath'); return false;">
+              <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary mb-3.5">
+                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">bathtub</span>
+              </div>
+              <div class="flex items-center gap-1.5 mb-1.5">
+                <span class="font-title-md text-title-md text-on-surface font-bold">방문목욕</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                이동식 특수욕조 차량<br>2인 1조 쾌적한 목욕
+              </p>
+              <span class="mt-4 inline-flex items-center text-secondary font-label-md text-label-md gap-0.5 font-bold">
+                자세히보기 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </span>
+            </a>
+            <a class="flex flex-col p-5 rounded-2xl bg-surface-container-lowest shadow-card hover:shadow-float transition-all cursor-pointer" href="#" onclick="switchView('services', 'family'); return false;">
+              <div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary mb-3.5">
+                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">diversity_1</span>
+              </div>
+              <div class="flex items-center gap-1.5 mb-1.5">
+                <span class="font-title-md text-title-md text-on-surface font-bold">가족요양</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                가족이 직접 돌보는 요양<br>매월 급여 국가지원
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary font-label-md text-label-md gap-0.5 font-bold">
+                자세히보기 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </span>
+            </a>
+            <a class="flex flex-col p-5 rounded-2xl bg-surface-container-lowest shadow-card hover:shadow-float transition-all cursor-pointer" href="#" onclick="switchView('services', 'equipment'); return false;">
+              <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-3.5">
+                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">accessible_forward</span>
+              </div>
+              <div class="flex items-center gap-1.5 mb-1.5">
+                <span class="font-title-md text-title-md text-on-surface font-bold">복지용구</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                전동침대·휠체어 대여<br>연 160만원 한도 지원
+              </p>
+              <span class="mt-4 inline-flex items-center text-primary font-label-md text-label-md gap-0.5 font-bold">
+                자세히보기 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 국가지원 혜택 배너 -->
+        <section class="w-full p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-primary-container to-primary text-on-primary shadow-card mb-10 sm:mb-12">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md inline-block mb-2.5">
+                국가지원 혜택
+              </span>
+              <h4 class="font-headline-sm text-headline-sm text-on-primary leading-tight">
+                월 이용료 85% ~ 100% 국가지원
+              </h4>
+              <p class="font-body-sm text-body-sm text-primary-fixed mt-1.5">
+                일반 대상자 본인부담금 15% · 기초수급권자 0%
+              </p>
+            </div>
+            <span class="material-symbols-outlined text-[44px] text-primary-fixed-dim opacity-80 shrink-0">account_balance_wallet</span>
+          </div>
+          <div class="mt-5 pt-3.5 flex items-center justify-between bg-primary/40 px-3.5 py-3 rounded-xl">
+            <span class="font-label-md text-label-md text-surface-container-low">하루 3시간 방문요양 시</span>
+            <div class="flex items-center gap-2">
+              <span class="font-title-md text-title-md text-secondary-fixed font-bold">월 약 15만 원대~</span>
+              <button onclick="switchView('services', 'calc')" type="button" class="px-2.5 py-1 rounded-md bg-secondary text-white font-bold text-xs flex items-center gap-0.5 hover:bg-[#8e3703] transition-colors shadow-sm">
+                <span>계산하기</span>
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 등급 미보유자 안내 배너 -->
+        <section class="w-full p-6 sm:p-7 rounded-2xl bg-surface-container-lowest shadow-card mb-10 sm:mb-12">
+          <div class="flex items-center gap-3.5 mb-3.5">
+            <div class="w-11 h-11 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+              <span class="material-symbols-outlined text-[24px]">contact_support</span>
+            </div>
+            <div>
+              <h4 class="font-headline-sm text-headline-sm text-on-surface">장기요양 등급이 없으신가요?</h4>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">공단 신청부터 병원 동행까지 무료 지원</p>
+            </div>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant bg-surface-container-low p-4 rounded-xl mb-5 leading-relaxed">
+            신청 서류 무료 접수부터 병원 의사소견서 발급 동행까지 전문 사회복지사가 친절하게 전 과정을 함께합니다.
+          </p>
+          <button class="w-full h-13 rounded-xl bg-primary text-on-primary flex items-center justify-center gap-2 font-label-lg text-label-lg active:scale-[0.99] transition-transform shadow-sm font-bold" onclick="switchView('grade-check')" type="button">
+            <span class="material-symbols-outlined text-[22px]">assignment_add</span>
+            간편 등급신청 무료대행 신청하기
+          </button>
+        </section>
+
+        <!-- 4가지 안심 약속 -->
+        <section class="w-full mb-10 sm:mb-12">
+          <div class="flex items-center gap-2 mb-4 pt-1">
+            <span class="w-2.5 h-6 rounded-full bg-primary"></span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">진선미센터 4가지 안심 약속</h3>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-card flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="material-symbols-outlined text-[26px] text-primary">badge</span>
+                <span class="font-headline-sm text-headline-sm text-primary font-bold">100%</span>
+              </div>
+              <div>
+                <h5 class="font-title-md text-title-md text-on-surface font-bold mb-1">국가공인 1급</h5>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">철저한 신원검증 요양보호사 1:1 매칭</p>
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-card flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="material-symbols-outlined text-[26px] text-primary">local_hospital</span>
+                <span class="font-headline-sm text-headline-sm text-primary font-bold">정기방문</span>
+              </div>
+              <div>
+                <h5 class="font-title-md text-title-md text-on-surface font-bold mb-1">사회복지사 라운딩</h5>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">매월 상태점검 및 케어플랜 맞춤 조정</p>
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-card flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="material-symbols-outlined text-[26px] text-secondary">security</span>
+                <span class="font-headline-sm text-headline-sm text-secondary font-bold">전원가입</span>
+              </div>
+              <div>
+                <h5 class="font-title-md text-title-md text-on-surface font-bold mb-1">전문 배상책임보험</h5>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">돌봄 중 발생 가능한 사고 100% 보장</p>
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-surface-container-lowest shadow-card flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-3">
+                <span class="material-symbols-outlined text-[26px] text-secondary">favorite</span>
+                <span class="font-headline-sm text-headline-sm text-secondary font-bold">98.7%</span>
+              </div>
+              <div>
+                <h5 class="font-title-md text-title-md text-on-surface font-bold mb-1">누적 돌봄 만족도</h5>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">실제 이용 어르신 및 보호자 평가</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 하단 시작 안내 배너 -->
+        <section class="w-full p-6 sm:p-7 rounded-2xl bg-surface-container-high/70 flex flex-col gap-4 mb-8">
+          <div class="flex items-center gap-2 text-primary">
+            <span class="material-symbols-outlined text-[24px]">support_agent</span>
+            <h4 class="font-title-md text-title-md font-bold">어디서부터 시작할지 고민되시나요?</h4>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            어르신의 현재 건강상태, 거주지, 돌봄 필요 시간에 맞춰 가장 적합한 케어 플랜을 무료로 설계해 드립니다. 주말·공휴일 상담도 가능합니다.
+          </p>
+          <div class="flex items-center gap-3.5 mt-1">
+            <a class="flex-1 h-13 rounded-xl bg-primary text-on-primary flex items-center justify-center gap-1.5 font-label-lg text-label-lg shadow-sm font-bold" href="tel:033-662-0001">
+              <span class="material-symbols-outlined text-[20px]">phone_in_talk</span>
+              상담 센터 통화
+            </a>
+            <button onclick="switchView('contact')" type="button" class="flex-1 h-13 rounded-xl bg-surface-container-lowest text-primary font-label-lg text-label-lg flex items-center justify-center gap-1 hover:bg-surface-container transition-colors border border-outline-variant/30 font-bold">
+              <span class="material-symbols-outlined text-[20px]">map</span>
+              센터 찾아오기
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: SERVICES & CALCULATOR VIEW -->
+    <div id="view-services" class="tab-view hidden">
+      <div class="flex flex-col w-full pb-16">
+<!-- Top Intro & Header Area -->
+<div class="pt-4 pb-2">
+<div class="flex items-center gap-1.5 mb-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md tracking-tight font-bold">국가공인 맞춤 케어 서비스</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+      가장 편안한 내 집에서,<br>
+<span class="text-primary font-bold">진선미 방문요양</span>을 만나보세요
+    </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+      국민건강보험공단 85%~100% 국비 지원으로 어르신의 존엄과 가족의 일상을 든든하게 지켜드립니다.
+    </p>
+</div>
+<!-- Service Tab Filter Pills -->
+<div class="w-full overflow-x-auto py-2 -mx-4 sm:-mx-5 px-4 sm:px-5 flex gap-2 no-scrollbar" id="serviceTabGroup">
+<button class="service-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap bg-primary text-on-primary shadow-sm transition-all duration-200" data-tab="care" onclick="switchServiceTab('care')" type="button">
+<span class="material-symbols-outlined text-[19px]">home_health</span>
+<span class="">방문요양</span>
+</button>
+<button class="service-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap bg-surface-container text-on-surface-variant transition-all duration-200" data-tab="bath" onclick="switchServiceTab('bath')" type="button">
+<span class="material-symbols-outlined text-[19px]">bathtub</span>
+<span class="">방문목욕</span>
+</button>
+<button class="service-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap bg-surface-container text-on-surface-variant transition-all duration-200" data-tab="family" onclick="switchServiceTab('family')" type="button">
+<span class="material-symbols-outlined text-[19px]">diversity_1</span>
+<span class="">가족요양</span>
+</button>
+<button class="service-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap bg-surface-container text-on-surface-variant transition-all duration-200" data-tab="equipment" onclick="switchServiceTab('equipment')" type="button">
+<span class="material-symbols-outlined text-[19px]">accessible</span>
+<span class="">복지용구/대여</span>
+</button>
+<button class="service-tab-btn flex items-center gap-1.5 px-4 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap bg-surface-container text-secondary font-bold transition-all duration-200 border border-secondary/30" data-tab="calc" onclick="switchServiceTab('calc')" type="button">
+<span class="material-symbols-outlined text-[19px]">calculate</span>
+<span class="">모의 계산기</span>
+</button>
+</div>
+
+<!-- PANEL 1: 방문요양 -->
+<div id="service-panel-care" class="service-panel flex flex-col gap-6">
+<!-- 방문요양 핵심 소개 카드 -->
+<div class="mt-3 bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 bg-primary/5 rounded-full pointer-events-none"></div>
+<div class="flex items-start justify-between gap-3">
+<div class="flex flex-col">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-[12px] font-bold w-fit mb-2">
+<span class="material-symbols-outlined text-[14px]">star</span>
+          어르신 맞춤 1:1 전담제
+        </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+          전문 요양보호사가<br>어르신 댁으로 직접 찾아갑니다
+        </h2>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+</div>
+<!-- Photo Banner of Warm Caregiver Service -->
+<div class="w-full h-44 rounded-lg overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="A warm and gentle Korean certified female caregiver in clean pastel apron holding hands with a smiling 75-year-old elderly grandmother inside a sunlit cozy living room in Seoul. Gentle morning sunlight streaming through sheer curtains, clean tea cup on wooden table, warm tactile human atmosphere, cinematic natural lighting, documentary photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3uW-GmMnjygj9me6tvFDlV54vwewUFEVljYHMmasP24sH7f5KUr89kHRT2lLrb-9xD_Dfxpz4o9P7lHvjPYH46brdcZdFOXydGvDquwiaVtZ9wzlgwTE3VAHOlyV4-Wwh6d76JCTkeAcCDB2j7x2ubjrXCw2zmcUbB9LMTFi93LsDAy6g3YTqiKYnIu73CjOcFHhFGvrKc0h7rD_wWdFiSgV2w_OCzxOjy_tic-_fxiuF-bo7ZKSulg">
+<div class="absolute bottom-2.5 left-2.5 right-2.5 bg-inverse-surface/80 backdrop-blur-md rounded-lg px-3 py-2 text-inverse-on-surface flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-inverse-primary text-[18px]">verified</span>
+<span class="font-label-md text-label-md text-inverse-on-surface text-[13px]">보건복지부 국가공인 전문 요양보호사 100% 매칭</span>
+</div>
+<span class="font-body-sm text-[12px] text-inverse-primary">배상책임보험 가입</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+      가장 익숙하고 정든 공간에서 품위 있는 노후를 보내실 수 있도록 식사부터 신체활동, 병원 진료 동행, 정서 교감까지 정성을 다해 돌봐드립니다.
+    </p>
+<!-- Key Stats Badge Bar -->
+<div class="grid grid-cols-3 gap-2 pt-1">
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+<span class="font-body-sm text-[12px] text-on-surface-variant">정부 지원금</span>
+<span class="font-title-md text-title-md text-secondary font-bold">최대 85%~100%</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+<span class="font-body-sm text-[12px] text-on-surface-variant">일일 이용시간</span>
+<span class="font-title-md text-title-md text-primary font-bold">3~4시간</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+<span class="font-body-sm text-[12px] text-on-surface-variant">안심 매칭</span>
+<span class="font-title-md text-title-md text-primary font-bold">1:1 전담제</span>
+</div>
+</div>
+</div>
+<!-- 상세 제공 서비스 3대 영역 안내 -->
+<div class="mt-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+        영역별 전문 케어 서비스
+      </h3>
+<span class="font-body-sm text-[13px] text-on-surface-variant">노인장기요양보험 표준</span>
+</div>
+<!-- Category 1: 신체활동 지원 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">accessibility_new</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-title-md text-title-md text-on-surface font-bold">1. 신체활동 지원</h4>
+<span class="font-body-sm text-[13px] text-on-surface-variant">어르신의 신체 잔존기능 유지 및 회복</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">restaurant</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">식사 섭취 보조</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">연하곤란 예방 및 투약 보조</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">clean_hands</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">세면 &amp; 구강 청결</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">틀니 소독 및 위생 청결</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">transfer_within_a_station</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">체위변경 &amp; 기립</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">욕창 예방 및 실내 이동 부축</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">sanitizer</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">배설 관리 보조</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">화장실 동행 및 기저귀 케어</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Category 2: 가사 및 일상지원 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">local_pharmacy</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-title-md text-title-md text-on-surface font-bold">2. 가사 및 일상지원</h4>
+<span class="font-body-sm text-[13px] text-on-surface-variant">어르신의 독립적이고 쾌적한 가정 생활</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">skillet</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">영양 맞춤 식사 준비</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">저염식 죽 조리 및 반찬 관리</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">local_laundry_service</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">생활공간 청소 &amp; 세탁</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">어르신 침실 정돈 및 의류 관리</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">hail</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">병원 &amp; 관공서 동행</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">진료 접수 및 처방약 수령 동행</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">shopping_basket</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">생필품 장보기</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">식자재 및 필수 소모품 구매 대행</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Category 3: 인지 및 정서지원 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-title-md text-title-md text-on-surface font-bold">3. 인지 및 정서지원</h4>
+<span class="font-body-sm text-[13px] text-on-surface-variant">우울감 해소 및 치매 예방 인지 두뇌 자극</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">forum</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">따뜻한 말벗 &amp; 공감</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">고립감 완화 및 정서적 안정</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">extension</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">인지 자극 두뇌 활동</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">회상 훈련, 칠교, 컬러링북</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">nordic_walking</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">햇볕 쬐기 산책 동행</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">인근 공원 안전 보행 훈련</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">favorite</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">가족 안심 일일 리포트</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">사진 &amp; 식사량 스마트 알림 전송</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 하루 표준 케어 타임라인 (09:00 ~ 12:00) -->
+<div class="mt-6 bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary font-bold">오전 3시간 집중 케어 예시</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">하루 표준 케어 일과표</h3>
+</div>
+<div class="px-2.5 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-md text-[12px] font-bold">
+        표준 180분 코스
+      </div>
+</div>
+<!-- Timeline Steps -->
+<div class="flex flex-col gap-0 relative pl-4 mt-2">
+<!-- Continuous vertical connector line -->
+<div class="absolute left-[27px] top-4 bottom-5 w-0.5 bg-surface-container-highest"></div>
+<!-- Item 1: 09:00 -->
+<div class="flex items-start gap-3 relative pb-5">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold z-10 shrink-0 shadow-sm mt-0.5">
+          1
+        </div>
+<div class="bg-surface-container-low rounded-lg p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">09:00 어르신 댁 방문 및 건강 상태 확인</span>
+<span class="font-body-sm text-[12px] text-primary font-semibold">20분</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            체온 및 혈압 측정, 간밤의 수면 상태 확인, 실내 환기 및 복약 체크
+          </p>
+</div>
+</div>
+<!-- Item 2: 09:20 -->
+<div class="flex items-start gap-3 relative pb-5">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold z-10 shrink-0 shadow-sm mt-0.5">
+          2
+        </div>
+<div class="bg-surface-container-low rounded-lg p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">09:20 세면·구강 위생 및 아침 식사 보조</span>
+<span class="font-body-sm text-[12px] text-primary font-semibold">50분</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            따뜻한 물수건 세안, 틀니 세척, 맞춤 영양 식사 조리 및 편안한 식사 섭취 보조
+          </p>
+</div>
+</div>
+<!-- Item 3: 10:10 -->
+<div class="flex items-start gap-3 relative pb-5">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold z-10 shrink-0 shadow-sm mt-0.5">
+          3
+        </div>
+<div class="bg-surface-container-low rounded-lg p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">10:10 신체 스트레칭 &amp; 인지 회상 활동</span>
+<span class="font-body-sm text-[12px] text-primary font-semibold">40분</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            가벼운 관절 가동 스트레칭, 옛 기억을 되살리는 회상 대화 및 퍼즐 놀이
+          </p>
+</div>
+</div>
+<!-- Item 4: 10:50 -->
+<div class="flex items-start gap-3 relative pb-5">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold z-10 shrink-0 shadow-sm mt-0.5">
+          4
+        </div>
+<div class="bg-surface-container-low rounded-lg p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">10:50 야외 산책 또는 병원 정기 동행</span>
+<span class="font-body-sm text-[12px] text-primary font-semibold">50분</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            인근 산책로 보행 훈련 또는 동네 의원 정기 진료 시 안전 휠체어 동행
+          </p>
+</div>
+</div>
+<!-- Item 5: 11:40 -->
+<div class="flex items-start gap-3 relative">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary font-label-md text-[11px] flex items-center justify-center font-bold z-10 shrink-0 shadow-sm mt-0.5">
+          5
+        </div>
+<div class="bg-surface-container-low rounded-lg p-3 flex-1 flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">11:40 생활환경 정돈 &amp; 보호자 일지 전송</span>
+<span class="font-body-sm text-[12px] text-secondary font-semibold">20분</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            식기 세척, 침상 주변 정돈 소독, 카카오톡 또는 문자로 당일 어르신 케어 사진 및 안부 전송
+          </p>
+</div>
+</div>
+</div>
+</div>
+</div> <!-- /PANEL 1: 방문요양 -->
+
+<!-- PANEL 2: 방문목욕 -->
+<div id="service-panel-bath" class="service-panel hidden flex flex-col gap-4 mt-3">
+  <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex flex-col">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-[12px] font-bold w-fit mb-2">
+          <span class="material-symbols-outlined text-[14px]">bathtub</span>
+          전문 목욕설비 2인 1조 전담 케어
+        </span>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+          특수 목욕 차량과 쾌적한 전용 욕조로<br>어르신의 청결과 혈액순환을 돕습니다
+        </h2>
+      </div>
+      <div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+        <span class="material-symbols-outlined text-[28px]">shower</span>
+      </div>
+    </div>
+    
+    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+      가정 내 낙상 위험이 높거나 욕실이 협소해 목욕이 힘드신 어르신을 위해, 전문 요양보호사 2명이 전용 온수 차량 및 이동식 욕조를 갖추고 댁으로 직접 찾아갑니다.
+    </p>
+
+    <div class="grid grid-cols-3 gap-2 pt-1">
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">이용 주기</span>
+        <span class="font-title-md text-title-md text-primary font-bold">주 1회 (월 4회)</span>
+      </div>
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">케어 인력</span>
+        <span class="font-title-md text-title-md text-primary font-bold">2인 1조 동행</span>
+      </div>
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">국비 지원</span>
+        <span class="font-title-md text-title-md text-secondary font-bold">85~100%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-3">
+    <h3 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-[20px]">task_alt</span>
+      진선미 방문목욕 4단계 안심 절차
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-1">
+      <div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</span>
+        <div>
+          <span class="font-label-md text-label-md text-on-surface font-bold block">목욕 전 활력징후 체크</span>
+          <span class="font-body-sm text-[12px] text-on-surface-variant">혈압·체온 측정 및 당일 신체 컨디션 사전 확인</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</span>
+        <div>
+          <span class="font-label-md text-label-md text-on-surface font-bold block">적정 온수 & 전신 세발</span>
+          <span class="font-body-sm text-[12px] text-on-surface-variant">38~40℃ 맞춤 온수로 편안한 입욕 및 전신 미온수 마사지</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">3</span>
+        <div>
+          <span class="font-label-md text-label-md text-on-surface font-bold block">피부 보습 & 손발톱 관리</span>
+          <span class="font-body-sm text-[12px] text-on-surface-variant">물기 건조 후 전신 보습 로션 도포, 욕창 부위 소독 드레싱</span>
+        </div>
+      </div>
+      <div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5">
+        <span class="w-6 h-6 rounded-full bg-primary text-on-primary font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">4</span>
+        <div>
+          <span class="font-label-md text-label-md text-on-surface font-bold block">환복 & 침구 정돈</span>
+          <span class="font-body-sm text-[12px] text-on-surface-variant">청결한 의복 환복, 침상 소독 정돈 및 따뜻한 수분 보충</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-between gap-3">
+    <div>
+      <span class="font-label-lg text-label-lg text-primary font-bold block">방문목욕 서비스 상담이 필요하신가요?</span>
+      <span class="text-xs text-on-surface-variant">어르신 댁 환경에 맞는 최적의 목욕 방식을 안내해 드립니다.</span>
+    </div>
+    <button onclick="switchView('contact')" class="px-4 py-2 rounded-lg bg-primary text-on-primary font-bold text-xs shrink-0 shadow-sm hover:bg-primary-container">
+      목욕 상담 문의
+    </button>
+  </div>
+</div>
+
+<!-- PANEL 3: 가족요양 -->
+<div id="service-panel-family" class="service-panel hidden flex flex-col gap-4 mt-3">
+  <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex flex-col">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-[12px] font-bold w-fit mb-2">
+          <span class="material-symbols-outlined text-[14px]">diversity_1</span>
+          가족 돌봄 공식 급여 인정
+        </span>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+          자녀·배우자가 부모님을 직접 돌보며<br>매월 안정적인 요양급여를 받으세요
+        </h2>
+      </div>
+      <div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+        <span class="material-symbols-outlined text-[28px]">payments</span>
+      </div>
+    </div>
+    
+    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+      요양보호사 자격증을 가진 가족이 장기요양 등급을 받은 어르신을 직접 케어하면, 노인장기요양보험법에 따라 진선미재가장기요양기관 소속으로 매월 가족요양 급여를 합법적으로 지급받으실 수 있습니다.
+    </p>
+
+    <div class="grid grid-cols-2 gap-3 pt-1">
+      <div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col border border-outline-variant/30">
+        <span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-bold text-[11px] w-fit mb-1">일반 가족요양</span>
+        <span class="font-title-md text-title-md text-on-surface font-bold">하루 60분 (월 20일)</span>
+        <span class="text-xs text-on-surface-variant mt-1 leading-snug">대다수 일반 가족요양 기준</span>
+        <span class="font-headline-sm text-[17px] text-primary font-bold mt-2">월 약 40~50만원대</span>
+      </div>
+      <div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col border border-secondary/30 bg-secondary/5">
+        <span class="px-2 py-0.5 rounded bg-secondary text-white font-bold text-[11px] w-fit mb-1">확대 가족요양</span>
+        <span class="font-title-md text-title-md text-on-surface font-bold">하루 90분 (월 최대 31일)</span>
+        <span class="text-xs text-on-surface-variant mt-1 leading-snug">배우자(65세 이상) 또는 치매 어르신</span>
+        <span class="font-headline-sm text-[17px] text-secondary font-bold mt-2">월 약 90만원 내외</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-3">
+    <h3 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-2">
+      <span class="material-symbols-outlined text-secondary text-[20px]">checklist</span>
+      가족요양 자격 및 신청 체크리스트
+    </h3>
+    <div class="flex flex-col gap-2 mt-1">
+      <div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+        <span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+        <span class="font-body-sm text-[13px] text-on-surface"><strong>가족 요양보호사 자격증 소지</strong> (자녀, 며느리, 사위, 배우자, 형제자매 등)</span>
+      </div>
+      <div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+        <span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+        <span class="font-body-sm text-[13px] text-on-surface"><strong>어르신 장기요양 등급(1~5등급) 인정</strong> (진선미에서 무료 등급신청 지원)</span>
+      </div>
+      <div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+        <span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+        <span class="font-body-sm text-[13px] text-on-surface"><strong>타 직장 근무시간 월 160시간 미만</strong> (4대보험 가입 직장 월 160시간 이상 시 겸직 불가)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-between gap-3">
+    <div>
+      <span class="font-label-lg text-label-lg text-secondary font-bold block">가족요양 급여 모의 계산이 궁금하신가요?</span>
+      <span class="text-xs text-on-surface-variant">자격 요건 확인 및 정확한 실수령액을 즉시 계산해 드립니다.</span>
+    </div>
+    <button onclick="switchView('contact')" class="px-4 py-2 rounded-lg bg-secondary text-white font-bold text-xs shrink-0 shadow-sm hover:bg-[#8e3703]">
+      가족요양 문의
+    </button>
+  </div>
+</div>
+
+<!-- PANEL 4: 복지용구/대여 -->
+<div id="service-panel-equipment" class="service-panel hidden flex flex-col gap-4 mt-3">
+  <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex flex-col">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-[12px] font-bold w-fit mb-2">
+          <span class="material-symbols-outlined text-[14px]">accessible</span>
+          연간 160만원 국비 한도 지원
+        </span>
+        <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+          전동침대·휠체어부터 낙상 방지용품까지<br>85~100% 국가 지원으로 이용하세요
+        </h2>
+      </div>
+      <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+        <span class="material-symbols-outlined text-[28px]">wheelchair_pickup</span>
+      </div>
+    </div>
+    
+    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+      장기요양 등급(1~5등급, 인지지원)을 받으신 어르신은 복지용구 급여를 통해 고가의 전동침대나 휠체어를 월 1~2만원대의 저렴한 본인부담금으로 대여하거나 구입하실 수 있습니다.
+    </p>
+
+    <div class="grid grid-cols-3 gap-2 pt-1">
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">국비 연간 한도</span>
+        <span class="font-title-md text-title-md text-primary font-bold">연 160만원</span>
+      </div>
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">본인부담률</span>
+        <span class="font-title-md text-title-md text-secondary font-bold">0% ~ 15%</span>
+      </div>
+      <div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col items-center text-center">
+        <span class="font-body-sm text-[12px] text-on-surface-variant">설치 & 배송</span>
+        <span class="font-title-md text-title-md text-primary font-bold">댁내 무료설치</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-2.5 border border-outline-variant/30">
+      <span class="font-label-lg text-label-lg text-primary font-bold flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">bed</span>
+        주요 대여 품목 (월 대여)
+      </span>
+      <ul class="text-xs text-on-surface-variant flex flex-col gap-2">
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 전동침대 (3모터/2모터)</span>
+          <span class="font-bold text-primary">월 약 1~2만원대</span>
+        </li>
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 수동 휠체어</span>
+          <span class="font-bold text-primary">월 약 4천~8천원대</span>
+        </li>
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 이동욕조 & 배회감지기(GPS)</span>
+          <span class="font-bold text-primary">월 수천원대</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-2.5 border border-outline-variant/30">
+      <span class="font-label-lg text-label-lg text-secondary font-bold flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+        주요 구입 품목 (영구 소장)
+      </span>
+      <ul class="text-xs text-on-surface-variant flex flex-col gap-2">
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 성인용 보행기 (실외 유모차형)</span>
+          <span class="font-bold text-secondary">자부담 약 1~3만원대</span>
+        </li>
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 목욕의자 & 이동변기</span>
+          <span class="font-bold text-secondary">자부담 약 1~2만원대</span>
+        </li>
+        <li class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+          <span>• 안전손잡이 & 미끄럼방지매트</span>
+          <span class="font-bold text-secondary">자부담 수천원대</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="p-4 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-between gap-3">
+    <div>
+      <span class="font-label-lg text-label-lg text-primary font-bold block">필요한 복지용구가 있으신가요?</span>
+      <span class="text-xs text-on-surface-variant">어르신 등급에 따른 남은 국비 지원 한도액을 즉시 조회해 드립니다.</span>
+    </div>
+    <button onclick="switchView('contact')" class="px-4 py-2 rounded-lg bg-primary text-on-primary font-bold text-xs shrink-0 shadow-sm hover:bg-primary-container">
+      품목 조회 문의
+    </button>
+  </div>
+</div>
+
+<!-- '내 부담금은 얼마일까요?' 본인부담금 계산기 인터랙티브 카드 -->
+<div id="cost-calculator-section" class="mt-8 bg-surface-container-lowest rounded-xl p-5 shadow-md flex flex-col gap-5 border border-outline-variant/20">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 text-secondary font-bold">
+<span class="material-symbols-outlined text-[20px]">calculate</span>
+<span class="font-label-md text-label-md">장기요양 국비지원 모의 계산기</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-0.5">
+          내 부담금은 얼마일까요?
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          어르신의 장기요양 등급과 경감 자격을 선택하시면 월 예상 지원금과 본인부담금을 즉시 산출해 드립니다.
+        </p>
+</div>
+</div>
+<!-- Step 1: 등급 선택 -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold">1</span>
+        어르신 장기요양 등급 선택
+      </label>
+<div class="grid grid-cols-3 gap-2" id="gradeSelectionContainer">
+<!-- 1등급 -->
+<button class="grade-pill-btn p-3 rounded-lg bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="1" data-limit="2069900" type="button">
+<span class="font-label-lg text-label-lg font-bold">1등급</span>
+<span class="font-body-sm text-[11px] opacity-80">월 206만원 한도</span>
+</button>
+<!-- 2등급 -->
+<button class="grade-pill-btn p-3 rounded-lg bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="2" data-limit="1869600" type="button">
+<span class="font-label-lg text-label-lg font-bold">2등급</span>
+<span class="font-body-sm text-[11px] opacity-80">월 186만원 한도</span>
+</button>
+<!-- 3등급 (기본 선택) -->
+<button class="grade-pill-btn p-3 rounded-lg bg-primary text-on-primary shadow-sm flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="3" data-limit="1453100" type="button">
+<span class="font-label-lg text-label-lg font-bold">3등급</span>
+<span class="font-body-sm text-[11px] opacity-90">월 145만원 한도</span>
+</button>
+<!-- 4등급 -->
+<button class="grade-pill-btn p-3 rounded-lg bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="4" data-limit="1341800" type="button">
+<span class="font-label-lg text-label-lg font-bold">4등급</span>
+<span class="font-body-sm text-[11px] opacity-80">월 134만원 한도</span>
+</button>
+<!-- 5등급 -->
+<button class="grade-pill-btn p-3 rounded-lg bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="5" data-limit="1151600" type="button">
+<span class="font-label-lg text-label-lg font-bold">5등급</span>
+<span class="font-body-sm text-[11px] opacity-80">치매전문케어</span>
+</button>
+<!-- 인지지원등급 -->
+<button class="grade-pill-btn p-3 rounded-lg bg-surface-container-low text-on-surface-variant flex flex-col items-center justify-center transition-all duration-150 active:scale-95" data-grade="cognition" data-limit="643700" type="button">
+<span class="font-label-lg text-label-lg font-bold">인지지원</span>
+<span class="font-body-sm text-[11px] opacity-80">주야간/인지</span>
+</button>
+</div>
+</div>
+<!-- Step 2: 본인부담 감경 자격 선택 -->
+<div class="flex flex-col gap-2 mt-1">
+<label class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary font-label-md text-[11px] flex items-center justify-center font-bold">2</span>
+        본인부담금 경감 대상 구분
+      </label>
+<div class="flex flex-col gap-2" id="copayRadioContainer">
+<!-- 일반 15% (기본 선택) -->
+<label class="copay-card cursor-pointer flex items-center justify-between p-3.5 rounded-lg bg-primary/10 text-on-surface transition-colors duration-150" data-rate="0.15">
+<div class="flex items-center gap-3">
+<div class="copay-indicator w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[15px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold">일반 대상자 (85% 국비 지원)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">대다수 일반 건강보험 가입자</span>
+</div>
+</div>
+<span class="font-title-md text-title-md text-primary font-bold">15% 부담</span>
+</label>
+<!-- 감경 대상 9% -->
+<label class="copay-card cursor-pointer flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low text-on-surface transition-colors duration-150" data-rate="0.09">
+<div class="flex items-center gap-3">
+<div class="copay-indicator w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent shrink-0">
+<span class="material-symbols-outlined text-[15px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold">감경 40% 대상자 (91% 지원)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">보험료 순위 감경 대상</span>
+</div>
+</div>
+<span class="font-title-md text-title-md text-on-surface font-bold">9% 부담</span>
+</label>
+<!-- 감경 대상 6% -->
+<label class="copay-card cursor-pointer flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low text-on-surface transition-colors duration-150" data-rate="0.06">
+<div class="flex items-center gap-3">
+<div class="copay-indicator w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent shrink-0">
+<span class="material-symbols-outlined text-[15px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold">감경 60% 대상자 (94% 지원)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">의료급여 2종 및 차상위계층</span>
+</div>
+</div>
+<span class="font-title-md text-title-md text-on-surface font-bold">6% 부담</span>
+</label>
+<!-- 기초생활수급자 0% -->
+<label class="copay-card cursor-pointer flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low text-on-surface transition-colors duration-150" data-rate="0.00">
+<div class="flex items-center gap-3">
+<div class="copay-indicator w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent shrink-0">
+<span class="material-symbols-outlined text-[15px]">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold">기초생활수급자 (100% 전액 지원)</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant">의료급여 1종 수급권자</span>
+</div>
+</div>
+<span class="font-title-md text-title-md text-secondary font-bold">전액 무료 (0%)</span>
+</label>
+</div>
+</div>
+<!-- Live Calculation Result Card -->
+<div class="rounded-xl bg-primary text-on-primary p-4 shadow-md flex flex-col gap-3.5 relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-36 h-36 bg-white/5 rounded-full pointer-events-none"></div>
+<div class="flex items-center justify-between pb-2.5 border-b border-white/10">
+<span class="font-label-md text-label-md text-on-primary-container font-medium">선택 등급 월 이용 한도액</span>
+<span class="font-title-md text-title-md text-on-primary font-bold" id="displayMonthlyLimit">1,453,100원</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-on-primary-container font-body-sm text-body-sm">
+<span class="">정부(건강보험공단) 지원금</span>
+<span class="font-bold text-primary-fixed" id="displayGovSupport">1,235,135원</span>
+</div>
+<div class="flex items-center justify-between text-on-primary-container font-body-sm text-body-sm">
+<span class="">실제 자부담 비율</span>
+<span class="font-bold text-on-primary" id="displayRateText">15%</span>
+</div>
+</div>
+<div class="bg-primary-container/80 rounded-lg p-3.5 flex items-center justify-between mt-1">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-primary font-semibold">고객님 실제 예상 부담금</span>
+<span class="font-body-sm text-[11px] text-on-primary-container leading-tight">월 한도액 전액 소진 기준</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-secondary-fixed" id="displayMyPay">217,965</span>
+<span class="font-title-md text-title-md font-bold text-secondary-fixed">원</span>
+</div>
+</div>
+<!-- Trust Assurance & Disclaimer Note -->
+<div class="flex flex-col gap-1.5 pt-1.5 border-t border-white/15 text-on-primary-container text-[11px] font-body-sm leading-relaxed">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] shrink-0 text-secondary-fixed">check_circle</span>
+<span>실제 이용하신 시간만큼만 청구되며, 미사용 한도액은 소멸되지 않습니다.</span>
+</div>
+<div class="flex items-start gap-1.5 opacity-90">
+<span class="material-symbols-outlined text-[15px] shrink-0 mt-0.5">info</span>
+<span>※ 본 계산기는 보건복지부 노인장기요양보험 기준에 따른 모의 산출 금액으로, 실제 이용 일수·시간 및 최신 고시에 따라 차이가 있을 수 있습니다. 정확한 개인별 지원액은 센터(033-662-0001)로 문의하시면 즉시 확인해 드립니다.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Real Caregiver Matching Assurance Banner -->
+<div class="mt-6 bg-surface-container rounded-xl p-4 flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0 bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Close up warm compassionate portrait photo of a smiling professional Korean social worker in formal beige jacket, warm inviting clinical background, soft natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2TL5jq_-VLYKvB3wrvZf1XBvxDCWRWb1e3tvXIOt6n3Wa37zpkv472eJ4hz-gEFFIRtVGQ_Zoom_jrqE8nWA_8jEX9lzBIBxibBwM4-aKcF55Ey5KoDihW6-qiciqgX9Joe3f0DEgogYK_E47RCAocTfLttLmSCD6D8gOQUy3-_kqROXP0TyRgmpJyECN_e7QH363gLrR8TAvJxJdwNeWA6X8e-WoANLuX8OPMd3kPJ4xywsfwxZ1YA">
+</div>
+<div class="flex flex-col flex-1">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">아직 등급이 없으신가요?</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant leading-snug">진선미 센터 사회복지사가 건강보험공단 신청부터 등급 판정까지 전액 무료 대행해 드립니다.</span>
+</div>
+</div>
+<!-- Consultation CTA Card beneath calculator -->
+<div class="mt-4 bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+  <div class="flex flex-col text-center sm:text-left">
+    <span class="font-headline-sm text-[16px] text-on-surface font-bold">부모님을 위한 맞춤 돌봄 플랜</span>
+    <span class="text-xs text-on-surface-variant mt-0.5">전담 사회복지사가 상태에 맞는 최적의 시간과 혜택을 설계해 드립니다.</span>
+  </div>
+  <div class="flex items-center gap-2 w-full sm:w-auto">
+    <a aria-label="전화상담" class="h-12 px-4 rounded-xl bg-surface-container text-primary flex items-center justify-center gap-1.5 font-bold text-xs shrink-0 active:scale-95 transition-transform" href="tel:033-662-0001">
+      <span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+      <span>033-662-0001</span>
+    </a>
+    <button class="flex-1 sm:flex-initial h-12 px-5 rounded-xl bg-secondary text-white font-bold text-xs shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-transform hover:bg-[#8e3703]" onclick="switchView('contact')" type="button">
+      <span>맞춤 케어 상담 신청</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </button>
+  </div>
+</div>
+<!-- Inline Micro-Interactions Script -->
+<script>
+    (function initCalculator() {
+      // Calculator state
+      let currentLimit = 1453100; // 3등급 default
+      let currentRate = 0.15;     // 15% 일반 default
+      let currentGradeName = "3등급";
+
+      const limitDisplay = document.getElementById("displayMonthlyLimit");
+      const govSupportDisplay = document.getElementById("displayGovSupport");
+      const rateTextDisplay = document.getElementById("displayRateText");
+      const myPayDisplay = document.getElementById("displayMyPay");
+
+      function formatNumber(num) {
+        return Math.round(num).toLocaleString('ko-KR');
+      }
+
+      function updateCalculation() {
+        const myPay = currentLimit * currentRate;
+        const govSupport = currentLimit - myPay;
+
+        if (limitDisplay) limitDisplay.textContent = formatNumber(currentLimit) + "원";
+        if (govSupportDisplay) govSupportDisplay.textContent = formatNumber(govSupport) + "원";
+        if (rateTextDisplay) rateTextDisplay.textContent = (currentRate * 100).toFixed(0) + "%";
+        if (myPayDisplay) myPayDisplay.textContent = formatNumber(myPay);
+      }
+
+      // 1. Grade selection pills
+      const gradeButtons = document.querySelectorAll("#gradeSelectionContainer .grade-pill-btn");
+      gradeButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          gradeButtons.forEach((b) => {
+            b.classList.remove("bg-primary", "text-on-primary", "shadow-sm");
+            b.classList.add("bg-surface-container-low", "text-on-surface-variant");
+          });
+          btn.classList.remove("bg-surface-container-low", "text-on-surface-variant");
+          btn.classList.add("bg-primary", "text-on-primary", "shadow-sm");
+
+          currentLimit = parseFloat(btn.getAttribute("data-limit")) || 0;
+          currentGradeName = btn.querySelector("span").textContent.trim();
+          updateCalculation();
+        });
+      });
+
+      // 2. Copay selection radio cards
+      const copayCards = document.querySelectorAll("#copayRadioContainer .copay-card");
+      copayCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          copayCards.forEach((c) => {
+            c.classList.remove("bg-primary/10");
+            c.classList.add("bg-surface-container-low");
+            const indicator = c.querySelector(".copay-indicator");
+            if (indicator) {
+              indicator.classList.remove("bg-primary", "text-on-primary");
+              indicator.classList.add("bg-surface-container-highest", "text-transparent");
+            }
+          });
+
+          card.classList.remove("bg-surface-container-low");
+          card.classList.add("bg-primary/10");
+          const activeIndicator = card.querySelector(".copay-indicator");
+          if (activeIndicator) {
+            activeIndicator.classList.remove("bg-surface-container-highest", "text-transparent");
+            activeIndicator.classList.add("bg-primary", "text-on-primary");
+          }
+
+          currentRate = parseFloat(card.getAttribute("data-rate")) || 0;
+          updateCalculation();
+        });
+      });
+
+
+
+      // Initial run
+      updateCalculation();
+    })();
+
+    function triggerCareConsultModal() {
+      switchView('contact');
+    }
+  </script>
+</div>
+    </div>
+
+        <!-- TAB 3: GRADE CHECK & SELF DIAGNOSIS VIEW -->
+    <div id="view-grade-check" class="tab-view hidden">
+      <div class="flex flex-col w-full pb-16">
+
+        <!-- Top Intro & Header Area -->
+        <div class="pt-4 pb-2 mb-4">
+          <div class="flex items-center gap-1.5 mb-1 text-primary">
+            <span class="material-symbols-outlined text-[18px]">verified</span>
+            <span class="font-label-md text-label-md tracking-tight font-bold">100% 무료 등급신청 지원</span>
+          </div>
+          <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+            복잡한 장기요양 등급신청,<br>
+            <span class="text-primary font-bold">진선미가 1:1로</span> 함께합니다
+          </h1>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+            국민건강보험공단 서류 접수 무료 대행부터 병원 의사소견서 발급 동행까지 전 과정을 책임집니다.
+          </p>
+        </div>
+
+        <!-- Top Trust & Warmth Hero Banner -->
+        <section class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary via-primary-container to-tertiary text-on-primary p-6 sm:p-7 shadow-card mb-10 sm:mb-12">
+          <div class="relative z-10 flex flex-col gap-2.5">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-on-secondary w-fit shadow-sm">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span class="font-label-md text-label-md font-bold">전담 사회복지사 1:1 맞춤 지원</span>
+            </div>
+            <h2 class="font-headline-lg-mobile text-headline-lg-mobile leading-tight mt-1">
+              복잡한 서류 절차,<br>
+              진선미가 <span class="text-secondary-fixed-dim font-bold">100% 무료</span>로<br>대신 신청해 드립니다.
+            </h2>
+            <p class="font-body-sm text-body-sm text-on-primary-container mt-1 leading-relaxed">
+              국민건강보험공단 등급신청 무료 대행부터 병원 의사소견서 발급 동행까지 가족의 마음으로 곁을 지킵니다.
+            </p>
+
+            <!-- Key Metric Strip -->
+            <div class="grid grid-cols-3 gap-2.5 mt-4 pt-3.5 bg-primary-fixed/10 rounded-xl p-3.5 backdrop-blur-sm">
+              <div class="flex flex-col items-center text-center">
+                <span class="font-label-md text-label-md text-secondary-fixed font-medium">신청 대행</span>
+                <span class="font-title-md text-title-md font-bold text-on-primary mt-0.5">전액 무료</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <span class="font-label-md text-label-md text-secondary-fixed font-medium">공단 방문조사</span>
+                <span class="font-title-md text-title-md font-bold text-on-primary mt-0.5">공단 자체심사</span>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <span class="font-label-md text-label-md text-secondary-fixed font-medium">병원 방문</span>
+                <span class="font-title-md text-title-md font-bold text-on-primary mt-0.5">진선미 동행</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Visual Process Guide (4 Steps) -->
+        <section class="flex flex-col mb-10 sm:mb-12">
+          <div class="flex items-center justify-between mb-4 pt-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-6 rounded-full bg-secondary"></span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface">등급 인정 절차 4단계</h3>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant font-medium">평균 30일 소요</span>
+          </div>
+
+          <!-- Step Visual Infographic Card -->
+          <div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card flex flex-col space-y-6 sm:space-y-7">
+            <!-- Step 1 -->
+            <div class="flex items-start gap-3.5 relative">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-lg shadow-sm shrink-0">
+                  1
+                </div>
+                <div class="w-0.5 h-16 bg-outline-variant/40 my-1"></div>
+              </div>
+              <div class="flex-1 bg-surface-container-low rounded-xl p-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-title-md text-title-md text-primary font-bold">인정신청서 제출</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-secondary text-on-secondary font-label-md text-[12px] font-bold">진선미 무료 대행</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+                  공단 방문 없이 전문 사회복지사가 서류 일체를 팩스 및 온라인으로 즉시 접수합니다.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex items-start gap-3.5 relative">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-lg shadow-sm shrink-0">
+                  2
+                </div>
+                <div class="w-0.5 h-16 bg-outline-variant/40 my-1"></div>
+              </div>
+              <div class="flex-1 bg-surface-container-low rounded-xl p-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-title-md text-title-md text-on-surface font-bold">건보공단 직원 방문조사</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-[12px]">공단 자체 조사</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+                  국민건강보험공단 조사원이 어르신 댁을 직접 방문하여 52개 심신상태 항목을 공정하고 객관적으로 조사합니다.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex items-start gap-3.5 relative">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-lg shadow-sm shrink-0">
+                  3
+                </div>
+                <div class="w-0.5 h-16 bg-outline-variant/40 my-1"></div>
+              </div>
+              <div class="flex-1 bg-surface-container-low rounded-xl p-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-title-md text-title-md text-primary font-bold">의사소견서 발급·제출</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-secondary text-on-secondary font-label-md text-[12px] font-bold">진선미 병원 동행</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+                  거동이 불편하신 어르신을 위해 다니시던 병원이나 협약 의료기관으로 센터가 직접 동행하여 소견서 발급과 제출을 지원합니다.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex items-start gap-3.5">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-lg shadow-sm shrink-0">
+                  4
+                </div>
+              </div>
+              <div class="flex-1 bg-surface-container-low rounded-xl p-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-title-md text-title-md text-on-surface font-bold">등급판정 및 결과 통보</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-md text-[12px] font-bold">최대 85~100% 지원</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+                  등급판정위원회의 심의 후 1~5등급 또는 인지지원등급 결정서를 받아 즉시 요양보호사 매칭이 진행됩니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Photo Warmth Visual Element -->
+        <section class="w-full rounded-2xl overflow-hidden shadow-card mb-10 sm:mb-12 bg-surface-container-lowest">
+          <div class="relative h-48 sm:h-52 w-full">
+            <img class="w-full h-full object-cover" data-alt="A gentle South Korean elderly woman with soft smile holding hands with a warm, caring professional female social worker in a brightly lit warm living room. Warm ambient morning sunlight casting soft highlights, conveying trust, familial warmth, dignity, and calm reassurance with soft natural pine tones and muted emerald accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC69iOsOFOI7y8Yyt1vLIer1iXVU0CyWuT30rk-kqQTlL4A-w3AaDvUA65nTzyvhy28iAvGrrIXSklieVV9J665cYPqRtPBGy1G3llb9VAyYCAoTIwonD60EaTPdD_IFbCYkbpUV2J8WMyQ-RjUK1Mhi4JeVgs_kLn1B2Je2LUkW_p9kFYvdDFyZVWEfWxvINuVfNWoGldQeMsP2nLYFmfzQaAlXuWiy3pmEREMKxwPreVxeCoX9tADEw">
+            <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/85 via-inverse-surface/35 to-transparent flex flex-col justify-end p-6 text-inverse-on-surface">
+              <span class="font-label-lg text-label-lg font-bold text-secondary-fixed">"어르신 혼자 계셔도 안심할 수 있도록"</span>
+              <p class="font-body-sm text-body-sm opacity-90 mt-1 leading-relaxed">신청서 무료 대행 접수부터 병원 의사소견서 발급 동행까지 정성껏 챙겨드립니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive 3-Minute Self Assessment Form -->
+        <section class="flex flex-col mb-10 sm:mb-12" id="self-assessment-section">
+          <div class="flex items-center gap-2 mb-2 pt-1">
+            <span class="w-2.5 h-6 rounded-full bg-primary"></span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">3분 간편 등급 예상 자가진단</h3>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+            어르신의 현재 상태에 가장 가까운 항목을 선택해 주세요.
+          </p>
+
+          <!-- Interactive Progress indicator -->
+          <div class="bg-surface-container rounded-full h-2 w-full mb-6 overflow-hidden">
+            <div class="bg-secondary h-full w-1/4 transition-all duration-300" id="quiz-progress-bar"></div>
+          </div>
+
+          <form class="flex flex-col gap-6 sm:gap-7" id="quiz-form" onsubmit="event.preventDefault();">
+            <!-- Question 1 -->
+            <div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card">
+              <div class="flex items-center gap-2 mb-3.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">Q1</span>
+                <h4 class="font-title-md text-title-md text-on-surface font-bold">일상생활 거동 능력</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-3.5">평소 실내외 이동 시 어떤 모습이신가요?</p>
+              <div class="flex flex-col gap-3">
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="1" data-val="1">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">혼자서 무리 없이 외출 가능</span>
+                  <input class="w-5 h-5 accent-primary" name="q1" onchange="updateScore()" type="radio" value="1">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="1" data-val="2">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">지팡이·보행기 사용 또는 부축 필요</span>
+                  <input class="w-5 h-5 accent-primary" name="q1" onchange="updateScore()" type="radio" value="2">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="1" data-val="3">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">대부분 침대 생활 (와상 상태)</span>
+                  <input class="w-5 h-5 accent-primary" name="q1" onchange="updateScore()" type="radio" value="3">
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card">
+              <div class="flex items-center gap-2 mb-3.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">Q2</span>
+                <h4 class="font-title-md text-title-md text-on-surface font-bold">식사 및 화장실 이용</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-3.5">식사 준비, 옷 입기, 용변 처리는 어떠신가요?</p>
+              <div class="flex flex-col gap-3">
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="2" data-val="1">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">스스로 모두 가능</span>
+                  <input class="w-5 h-5 accent-primary" name="q2" onchange="updateScore()" type="radio" value="1">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="2" data-val="2">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">일부 동작에 가족의 도움 필요</span>
+                  <input class="w-5 h-5 accent-primary" name="q2" onchange="updateScore()" type="radio" value="2">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="2" data-val="3">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">혼자서는 전혀 불가능 (전적 도움 필요)</span>
+                  <input class="w-5 h-5 accent-primary" name="q2" onchange="updateScore()" type="radio" value="3">
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card">
+              <div class="flex items-center gap-2 mb-3.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">Q3</span>
+                <h4 class="font-title-md text-title-md text-on-surface font-bold">기억력 및 인지 상태</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-3.5">약 복용 시간이나 길 찾기, 가족 기억은 어떠신가요?</p>
+              <div class="flex flex-col gap-3">
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="3" data-val="1">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">양호함 (일상 대화 원활)</span>
+                  <input class="w-5 h-5 accent-primary" name="q3" onchange="updateScore()" type="radio" value="1">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="3" data-val="2">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">최근 일이나 약속을 자주 잊어버리심</span>
+                  <input class="w-5 h-5 accent-primary" name="q3" onchange="updateScore()" type="radio" value="2">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="3" data-val="3">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">치매 진단 또는 배회·망상 증상 있음</span>
+                  <input class="w-5 h-5 accent-primary" name="q3" onchange="updateScore()" type="radio" value="3">
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card">
+              <div class="flex items-center gap-2 mb-3.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold">Q4</span>
+                <h4 class="font-title-md text-title-md text-on-surface font-bold">연령 및 노인성 질환 해당 여부</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-3.5">장기요양보험 신청 기본 자격 요건입니다.</p>
+              <div class="flex flex-col gap-3">
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="4" data-val="yes">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">만 65세 이상이심</span>
+                  <input class="w-5 h-5 accent-primary" name="q4" onchange="updateScore()" type="radio" value="yes">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="4" data-val="disease">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">만 65세 미만이나 노인성 질환(뇌졸중/파킨슨 등) 진단</span>
+                  <input class="w-5 h-5 accent-primary" name="q4" onchange="updateScore()" type="radio" value="disease">
+                </label>
+                <label class="quiz-option cursor-pointer flex items-center justify-between p-4 rounded-xl bg-surface-container-low transition-colors hover:bg-surface-container" data-q="4" data-val="no">
+                  <span class="font-body-md text-body-md text-on-surface font-medium">해당 사항 없음</span>
+                  <input class="w-5 h-5 accent-primary" name="q4" onchange="updateScore()" type="radio" value="no">
+                </label>
+              </div>
+            </div>
+          </form>
+
+          <!-- Real-time Diagnostic Preview Badge -->
+          <div class="mt-8 p-6 rounded-2xl bg-surface-container shadow-sm flex items-center gap-4 transition-colors" id="diagnostic-preview">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined text-[26px]">analytics</span>
+            </div>
+            <div class="flex-1">
+              <span class="font-label-md text-label-md text-on-surface-variant block mb-0.5">현재 문진 분석 결과</span>
+              <span class="font-title-md text-title-md text-primary font-bold" id="diagnostic-text">문항을 체크하시면 예상 등급이 산출됩니다</span>
+            </div>
+          </div>
+          <p class="text-[12px] text-on-surface-variant mt-2.5 px-1 leading-relaxed">
+            ※ 본 간편 자가진단은 신청 자격 및 예상 범위 안내를 위한 시뮬레이션이며, 실제 장기요양 등급은 국민건강보험공단 직원의 현장 방문조사(52개 항목) 및 등급판정위원회의 심의를 거쳐 최종 결정됩니다.
+          </p>
+        </section>
+
+        <!-- Free Application & Consultation Request Form Section -->
+        <section class="flex flex-col bg-surface-container-lowest rounded-2xl p-6 sm:p-7 shadow-card mb-10 sm:mb-12">
+          <div class="flex items-center gap-2 mb-2 pt-1">
+            <span class="w-2.5 h-6 rounded-full bg-secondary"></span>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">예상 등급 결과 확인 및 무료 상담 신청</h3>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 leading-relaxed">
+            위 자가진단 결과를 바탕으로 전담 사회복지사가 예상 등급 판정 및 맞춤 서류 대행을 1:1 무료로 안내해 드립니다. (대표 직통: 033-662-0001)
+          </p>
+          <form class="flex flex-col space-y-5" id="consult-form" onsubmit="handleFormSubmit(event); return false;">
+            <!-- 보호자 성함 -->
+            <div class="flex flex-col gap-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="caregiver-name">보호자(신청자) 성함 <span class="text-error">*</span></label>
+              <div class="relative">
+                <input class="w-full h-13 sm:h-14 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="caregiver-name" name="caregiver_name" placeholder="예: 김민우" required="" type="text">
+              </div>
+            </div>
+            <!-- 연락처 -->
+            <div class="flex flex-col gap-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="caregiver-phone">연락처 (휴대전화) <span class="text-error">*</span></label>
+              <div class="relative">
+                <input class="w-full h-13 sm:h-14 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="caregiver-phone" maxlength="13" name="caregiver_phone" placeholder="010-0000-0000" required="" type="tel">
+              </div>
+            </div>
+            <!-- 어르신과의 관계 -->
+            <div class="flex flex-col gap-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold">어르신과의 관계 <span class="text-error">*</span></label>
+              <div class="grid grid-cols-4 gap-2">
+                <label class="cursor-pointer">
+                  <input checked="" class="peer sr-only" name="relationship" type="radio" value="child">
+                  <span class="flex items-center justify-center h-12 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md peer-checked:bg-primary peer-checked:text-on-primary transition-all font-semibold">자녀</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input class="peer sr-only" name="relationship" type="radio" value="spouse">
+                  <span class="flex items-center justify-center h-12 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md peer-checked:bg-primary peer-checked:text-on-primary transition-all font-semibold">배우자</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input class="peer sr-only" name="relationship" type="radio" value="self">
+                  <span class="flex items-center justify-center h-12 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md peer-checked:bg-primary peer-checked:text-on-primary transition-all font-semibold">본인</span>
+                </label>
+                <label class="cursor-pointer">
+                  <input class="peer sr-only" name="relationship" type="radio" value="other">
+                  <span class="flex items-center justify-center h-12 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md peer-checked:bg-primary peer-checked:text-on-primary transition-all font-semibold">기타/친척</span>
+                </label>
+              </div>
+            </div>
+            <!-- 거주 지역 -->
+            <div class="flex flex-col gap-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="senior-location">어르신 실거주 지역 (시/구/동) <span class="text-error">*</span></label>
+              <div class="relative">
+                <input class="w-full h-13 sm:h-14 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="senior-location" placeholder="예: 강원 강릉시 주문진읍, 연곡면, 사천면 등" required="" type="text">
+              </div>
+            </div>
+            <!-- Additional Concerns Checkboxes -->
+            <div class="flex flex-col gap-2 pt-1">
+              <label class="font-label-md text-label-md text-on-surface font-semibold">필요한 돌봄 서비스 (중복 선택 가능)</label>
+              <div class="grid grid-cols-2 gap-2.5">
+                <label class="cursor-pointer flex items-center gap-2.5 p-3.5 rounded-xl bg-surface-container-low">
+                  <input checked="" class="w-4 h-4 accent-primary" name="service" type="checkbox" value="care">
+                  <span class="font-body-sm text-body-sm text-on-surface font-medium">방문요양 (가사·돌봄)</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-3.5 rounded-xl bg-surface-container-low">
+                  <input class="w-4 h-4 accent-primary" name="service" type="checkbox" value="bath">
+                  <span class="font-body-sm text-body-sm text-on-surface font-medium">방문목욕 (전용차량)</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-3.5 rounded-xl bg-surface-container-low">
+                  <input class="w-4 h-4 accent-primary" name="service" type="checkbox" value="hospital">
+                  <span class="font-body-sm text-body-sm text-on-surface font-medium">병원 동행 서비스</span>
+                </label>
+                <label class="cursor-pointer flex items-center gap-2.5 p-3.5 rounded-xl bg-surface-container-low">
+                  <input class="w-4 h-4 accent-primary" name="service" type="checkbox" value="family">
+                  <span class="font-body-sm text-body-sm text-on-surface font-medium">가족요양 급여 문의</span>
+                </label>
+              </div>
+            </div>
+            <!-- Privacy Consent Checkbox -->
+            <div class="flex items-start gap-2.5 pt-2 p-3.5 bg-surface-container-low rounded-xl">
+              <input class="w-5 h-5 accent-primary mt-0.5 shrink-0" id="privacy-consent" required type="checkbox">
+              <label class="font-body-sm text-[13px] text-on-surface-variant leading-tight cursor-pointer" for="privacy-consent">
+                <strong class="text-on-surface">[필수] 개인정보 수집 및 이용 동의</strong><br>
+                상담 및 등급신청 지원을 위해 성함, 연락처, 거주지를 수집하며, 상담 완료 후 관련 법령에 따라 안전하게 처리됩니다.
+              </label>
+            </div>
+            <!-- Action Button -->
+            <button class="w-full h-14 mt-3 rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md hover:bg-[#8e3703] active:scale-[0.99] transition-all" type="submit">
+              <span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+              <span>무료 등급신청 지원 신청하기</span>
+            </button>
+          </form>
+        </section>
+
+        <!-- Reassuring Center Information Snippet -->
+        <section class="bg-surface-container-low rounded-2xl p-6 flex items-center gap-4 mb-8">
+          <div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shrink-0 shadow-sm">
+            <span class="material-symbols-outlined text-[28px]">support_agent</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-title-md text-title-md text-on-surface font-bold">전화로 즉시 물어보기</span>
+              <span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-[11px] font-bold">365일 연중무휴</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              궁금하신 점은 언제든 <strong class="text-secondary font-bold">033-662-0001</strong>로 전화주시면 즉시 답변드립니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- Complete Modal Dialog -->
+        <div class="hidden fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-5" id="success-modal">
+          <div class="bg-surface-container-lowest rounded-2xl max-w-sm w-full p-6 shadow-xl flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary mb-3.5">
+              <span class="material-symbols-outlined text-[36px]">check_circle</span>
+            </div>
+            <h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">무료 등급신청 지원이 접수되었습니다!</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+              신청 내용이 안전하게 접수되었습니다. 전담 사회복지사가 남겨주신 연락처로 확인 후 친절하게 안내 전화를 드리겠습니다.
+            </p>
+            <div class="w-full bg-surface-container-low rounded-xl p-3.5 my-4 text-left font-body-sm text-[13px] text-on-surface-variant space-y-1">
+              <div>• 센터장 방문 일정 사전 조율</div>
+              <div>• 국민건강보험공단 전산 대행 등록</div>
+              <div>• 본인부담금 0~15% 혜택 심사</div>
+            </div>
+            <button class="w-full h-12 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-bold" onclick="closeSuccessModal()" type="button">
+              확인
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+        <!-- TAB 4: COUNSEL & CENTER LOCATION VIEW -->
+    <div id="view-contact" class="tab-view hidden">
+      <div class="flex flex-col w-full pb-16">
+
+        <!-- Top Intro & Header Area -->
+        <div class="pt-4 pb-2 mb-4">
+          <div class="flex items-center gap-1.5 mb-1 text-primary">
+            <span class="material-symbols-outlined text-[18px]">location_on</span>
+            <span class="font-label-md text-label-md tracking-tight font-bold">센터 안내 및 상담 문의</span>
+          </div>
+          <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">
+            언제나 정성과 진심으로<br>
+            <span class="text-primary font-bold">따뜻하게 맞이하겠습니다</span>
+          </h1>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+            강릉시 주문진읍에 위치한 진선미센터는 연중무휴 어르신과 가족분들을 위한 상담 문이 열려 있습니다.
+          </p>
+        </div>
+
+        <!-- 빠른 연락 바 (3대 액션 버튼) -->
+        <section class="flex flex-col gap-3 mb-10 sm:mb-12">
+          <div class="flex items-center justify-between px-1 mb-1">
+            <span class="font-label-md text-label-md text-primary flex items-center gap-1 font-bold">
+              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+              실시간 빠른 상담 창구
+            </span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> 365일 상시대기
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- 전화 상담 -->
+            <a class="flex flex-col items-center justify-center py-5 px-4 rounded-2xl bg-surface-container-lowest shadow-card hover:bg-surface-container-low active:scale-95 transition-all text-center border border-outline-variant/20" href="tel:033-662-0001">
+              <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-2.5">
+                <span class="material-symbols-outlined text-[28px]">call</span>
+              </div>
+              <span class="font-headline-sm text-[16px] text-on-surface font-bold">전화 상담</span>
+              <span class="font-body-sm text-[13px] text-secondary font-bold mt-1">033-662-0001</span>
+              <span class="text-[11px] text-on-surface-variant mt-0.5">터치 시 바로 연결</span>
+            </a>
+            <!-- 카카오톡 상담 -->
+            <a class="flex flex-col items-center justify-center py-5 px-4 rounded-2xl bg-[#FEE500]/15 hover:bg-[#FEE500]/25 active:scale-95 transition-all text-center border border-[#FEE500]/40 shadow-card" href="https://open.kakao.com/o/glWVgATi" target="_blank" rel="noopener noreferrer">
+              <div class="w-14 h-14 rounded-full bg-[#FEE500] flex items-center justify-center text-[#3C1E1E] mb-2.5 shadow-sm">
+                <span class="material-symbols-outlined text-[28px]">chat_bubble</span>
+              </div>
+              <span class="font-headline-sm text-[16px] text-[#3C1E1E] font-bold">카카오톡 상담</span>
+              <span class="font-body-sm text-[13px] text-[#3C1E1E]/80 font-bold mt-1">진선미 공유방</span>
+              <span class="text-[11px] text-[#3C1E1E]/70 mt-0.5">1:1 오픈채팅 바로가기</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- 센터장 및 시설장 인사말 및 인증 카드 -->
+        <section class="flex flex-col rounded-2xl bg-surface-container-lowest p-6 sm:p-7 shadow-card space-y-6 sm:space-y-7 mb-10 sm:mb-12">
+          <div class="flex flex-col space-y-6">
+            <!-- 센터장 최미선 -->
+            <div class="flex items-start gap-4 pb-6 border-b border-outline-variant/20">
+              <div class="relative w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-surface-container shadow-inner">
+                <img class="w-full h-full object-cover" data-alt="센터장 최미선 프로필 사진" src="assets/choi_misun.jpg">
+                <div class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[12px]">
+                  <span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center min-w-0">
+                <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                  <span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-label-md text-[11px] font-bold">센터장</span>
+                  <span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded font-label-md text-[11px]">사회복지사/요양보호사 1급</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-headline-sm text-headline-sm text-primary font-bold">최미선</span>
+                  <a href="tel:01099704474" class="text-xs text-secondary font-bold px-2.5 py-1 rounded-full bg-secondary/10 hover:bg-secondary/20 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[14px]">call</span> 전화 연결
+                  </a>
+                </div>
+                <p class="font-body-sm text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">
+                  CPR 자격증 · 노인상담심리 · 노인치매 관리자 보유
+                </p>
+              </div>
+            </div>
+
+            <!-- 시설장 이상현 -->
+            <div class="flex items-start gap-4">
+              <div class="relative w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-surface-container shadow-inner">
+                <img class="w-full h-full object-cover" data-alt="Portrait of facility head Lee Sanghyun." src="assets/lee_sanghyun.jpg">
+                <div class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[12px]">
+                  <span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center min-w-0">
+                <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                  <span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-label-md text-[11px] font-bold">시설장</span>
+                  <span class="bg-surface-container text-on-surface-variant px-2 py-0.5 rounded font-label-md text-[11px]">사회복지사/요양보호사 1급</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-headline-sm text-headline-sm text-primary font-bold">이상현</span>
+                  <a href="tel:01034580518" class="text-xs text-secondary font-bold px-2.5 py-1 rounded-full bg-secondary/10 hover:bg-secondary/20 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[14px]">call</span> 전화 연결
+                  </a>
+                </div>
+                <p class="font-body-sm text-[12px] text-on-surface-variant mt-1.5 leading-relaxed">
+                  CPR · 노인치매관리자 · 병원동행매니저 · 노인돌봄생활지원사
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-xl bg-surface-container-low/80 text-on-surface flex flex-col space-y-2.5">
+            <div class="flex items-center gap-2 text-primary font-label-md text-label-md font-bold">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">badge</span>
+              공식 자격 및 보건복지부 등록 현황
+            </div>
+            <div class="grid grid-cols-2 gap-2.5 pt-1 font-body-sm text-[13px] text-on-surface-variant">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                사회복지사 1급 (최미선/이상현/이상록)
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                치매전문 관리자 자격 이수
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                장기요양기관 평가 최우수 A기관
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
+                배상책임 전문의무보험 가입
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 전문 인력 구성 소개 -->
+        <section class="flex flex-col space-y-4 mb-10 sm:mb-12">
+          <div class="flex flex-col px-1">
+            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">전문 케어 인력 구성</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">검증된 전문가가 정성을 다해 일대일 맞춤 돌봄을 제공합니다.</span>
+          </div>
+          <div class="grid grid-cols-3 gap-3.5">
+            <!-- 1급 사회복지사 -->
+            <div class="flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl bg-surface-container-lowest shadow-card">
+              <div class="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-2.5">
+                <span class="material-symbols-outlined text-[22px]">diversity_1</span>
+              </div>
+              <span class="font-headline-sm text-headline-sm text-primary font-bold">3인</span>
+              <span class="font-label-md text-[13px] text-on-surface font-bold mt-1">1급 사회복지사</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">최미선·이상현·이상록</span>
+            </div>
+            <!-- 치매 전문 요양보호사 -->
+            <div class="flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl bg-surface-container-lowest shadow-card">
+              <div class="w-11 h-11 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-2.5">
+                <span class="material-symbols-outlined text-[22px]">psychology_alt</span>
+              </div>
+              <span class="font-headline-sm text-headline-sm text-secondary font-bold">25명</span>
+              <span class="font-label-md text-[13px] text-on-surface font-bold mt-1">전문 요양보호사</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">전원 1급 · 치매교육 이수</span>
+            </div>
+            <!-- 응급처치 수료 -->
+            <div class="flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl bg-surface-container-lowest shadow-card">
+              <div class="w-11 h-11 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center mb-2.5">
+                <span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+              </div>
+              <span class="font-headline-sm text-headline-sm text-tertiary font-bold">100%</span>
+              <span class="font-label-md text-[13px] text-on-surface font-bold mt-1">CPR·소방응급</span>
+              <span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">분기별 안전 교육</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 센터 위치 및 오시는 길 안내 -->
+        <section class="flex flex-col rounded-2xl bg-surface-container-lowest p-6 sm:p-7 shadow-card space-y-5 mb-10 sm:mb-12">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">location_on</span>
+              </div>
+              <span class="font-headline-sm text-headline-sm text-on-surface font-bold">오시는 길</span>
+            </div>
+            <a class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-[12px] font-bold flex items-center gap-1 hover:bg-primary-container shadow-sm transition-colors" href="https://map.kakao.com/link/map/진선미재가장기요양기관,37.893895,128.826724" target="_blank" rel="noopener noreferrer">
+              <span>카카오 지도앱 열기</span> <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+            </a>
+          </div>
+
+          <!-- 실제 강릉시 주문진읍 인터랙티브 지도 -->
+          <div class="relative w-full rounded-2xl overflow-hidden shadow-sm border border-outline-variant/30">
+            <div id="facility-map" class="w-full h-64 z-0 bg-surface-container"></div>
+            <!-- 지도 상단 배너 라벨 -->
+            <div class="absolute top-3 left-3 z-[400] bg-white/95 backdrop-blur-sm px-3.5 py-1.5 rounded-full shadow-md flex items-center gap-1.5 text-xs font-bold text-primary border border-primary/20">
+              <span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+              <span>진선미 재가장기요양기관</span>
+            </div>
+          </div>
+
+          <!-- 빠른 지도앱 길찾기 버튼 바 -->
+          <div class="grid grid-cols-3 gap-2.5">
+            <a href="https://map.kakao.com/link/map/진선미재가장기요양기관,37.893895,128.826724" target="_blank" rel="noopener noreferrer" class="h-11 rounded-xl bg-[#FEE500] text-[#3C1E1E] font-bold text-xs flex items-center justify-center gap-1 shadow-sm hover:brightness-95 transition-all">
+              <span class="material-symbols-outlined text-[16px]">map</span> 카카오맵
+            </a>
+            <a href="https://map.naver.com/p/search/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EA%B0%95%EB%A6%89%EC%8B%9C%20%EC%A3%BC%EB%AC%B8%EC%A7%84%EC%9D%8D%20%EA%B5%90%ED%95%AD%EC%9B%90%EA%B8%B8%2039-2" target="_blank" rel="noopener noreferrer" class="h-11 rounded-xl bg-[#03C75A] text-white font-bold text-xs flex items-center justify-center gap-1 shadow-sm hover:brightness-95 transition-all">
+              <span class="material-symbols-outlined text-[16px]">explore</span> 네이버지도
+            </a>
+            <a href="https://map.kakao.com/link/to/진선미재가장기요양기관,37.893895,128.826724" target="_blank" rel="noopener noreferrer" class="h-11 rounded-xl bg-secondary text-white font-bold text-xs flex items-center justify-center gap-1 shadow-sm hover:bg-[#8e3703] transition-all">
+              <span class="material-symbols-outlined text-[16px]">navigation</span> 길찾기
+            </a>
+          </div>
+
+          <!-- 주소 상세 -->
+          <div class="space-y-3.5 pt-2">
+            <div class="flex items-start justify-between p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-primary text-[22px] shrink-0 mt-0.5">pin_drop</span>
+                <div class="flex flex-col">
+                  <span class="font-label-lg text-label-lg text-on-surface font-bold">강원특별자치도 강릉시 주문진읍 교항원길 39-2</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">주문진 시외버스터미널 및 교항원길 인근</span>
+                </div>
+              </div>
+              <button onclick="copyFacilityAddress()" class="px-2.5 py-1.5 rounded-lg bg-white border border-outline-variant/60 text-xs font-bold text-primary hover:bg-primary-fixed/20 shrink-0 transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">content_copy</span> 복사
+              </button>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">directions_car</span>
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md text-on-surface font-bold">주차 및 대중교통</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">센터 앞 전용 주차 가능 / 주문진 시외버스터미널 도보 10분</span>
+              </div>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">schedule</span>
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md text-on-surface font-bold">운영 및 상담 시간</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">평일 09:00 ~ 18:00 (방문상담 가능)</span>
+                <span class="font-body-sm text-body-sm text-secondary font-bold mt-0.5">긴급 전화상담: 365일 24시간 연중무휴 (033-662-0001)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 보호자 자주 묻는 질문 (FAQ) 아코디언 -->
+        <section class="flex flex-col rounded-2xl bg-surface-container-lowest p-6 sm:p-7 shadow-card space-y-4 mb-10 sm:mb-12">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-9 h-9 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">help_outline</span>
+              </div>
+              <div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">자주 묻는 질문 (FAQ)</h3>
+                <p class="font-body-sm text-[12px] text-on-surface-variant">보호자님들께서 가장 많이 문의하시는 핵심 질문 모음</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3 mt-1" id="faq-accordion-group">
+            <!-- FAQ Item 1 -->
+            <div class="rounded-xl border border-outline-variant/30 overflow-hidden bg-surface-container-low transition-colors">
+              <button type="button" onclick="toggleFaq(1)" class="w-full p-4 text-left flex items-center justify-between gap-3 font-title-md text-[14px] sm:text-title-md font-bold text-on-surface hover:text-primary transition-colors">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary text-xs flex items-center justify-center shrink-0">Q1</span>
+                  <span>장기요양 등급이 없는데 바로 방문요양을 이용할 수 있나요?</span>
+                </span>
+                <span class="material-symbols-outlined text-primary text-[20px] transition-transform duration-200" id="faq-icon-1">expand_more</span>
+              </button>
+              <div id="faq-ans-1" class="hidden px-4 pb-4 pt-1 text-xs sm:text-body-sm text-on-surface-variant border-t border-outline-variant/20 leading-relaxed bg-white/60">
+                등급이 아직 없으셔도 걱정하지 마세요. 진선미센터에 연락 주시면 <strong>국민건강보험공단 등급신청을 100% 무료로 대행</strong>해 드리며, 등급 심사 기간 중에도 어르신의 상태에 맞는 사전 케어 플랜과 긴급 돌봄 연계를 신속하게 도와드립니다.
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="rounded-xl border border-outline-variant/30 overflow-hidden bg-surface-container-low transition-colors">
+              <button type="button" onclick="toggleFaq(2)" class="w-full p-4 text-left flex items-center justify-between gap-3 font-title-md text-[14px] sm:text-title-md font-bold text-on-surface hover:text-primary transition-colors">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary text-xs flex items-center justify-center shrink-0">Q2</span>
+                  <span>배정된 요양보호사 선생님이 어르신과 안 맞으면 바꿀 수 있나요?</span>
+                </span>
+                <span class="material-symbols-outlined text-primary text-[20px] transition-transform duration-200" id="faq-icon-2">expand_more</span>
+              </button>
+              <div id="faq-ans-2" class="hidden px-4 pb-4 pt-1 text-xs sm:text-body-sm text-on-surface-variant border-t border-outline-variant/20 leading-relaxed bg-white/60">
+                네, 100% 무상으로 교체 가능합니다. 어르신과 요양보호사 선생님 간의 라포(신뢰) 형성이 가장 중요하므로, 성향이나 요청사항이 맞지 않으실 경우 <strong>전담 사회복지사 상담을 통해 추가 비용 없이 어르신에게 꼭 맞는 최적의 선생님으로 즉시 재매칭</strong>해 드립니다.
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="rounded-xl border border-outline-variant/30 overflow-hidden bg-surface-container-low transition-colors">
+              <button type="button" onclick="toggleFaq(3)" class="w-full p-4 text-left flex items-center justify-between gap-3 font-title-md text-[14px] sm:text-title-md font-bold text-on-surface hover:text-primary transition-colors">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary text-xs flex items-center justify-center shrink-0">Q3</span>
+                  <span>주말이나 공휴일, 야간에도 케어 이용이 가능한가요?</span>
+                </span>
+                <span class="material-symbols-outlined text-primary text-[20px] transition-transform duration-200" id="faq-icon-3">expand_more</span>
+              </button>
+              <div id="faq-ans-3" class="hidden px-4 pb-4 pt-1 text-xs sm:text-body-sm text-on-surface-variant border-t border-outline-variant/20 leading-relaxed bg-white/60">
+                네, 가능합니다. 보호자님의 출근, 출장, 간병 공백에 맞춰 주말 및 공휴일 일정 편성이 가능하며, 야간·휴일 가산 수가는 노인장기요양보험 공식 법정 고시 기준에 따라 투명하게 관리됩니다.
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="rounded-xl border border-outline-variant/30 overflow-hidden bg-surface-container-low transition-colors">
+              <button type="button" onclick="toggleFaq(4)" class="w-full p-4 text-left flex items-center justify-between gap-3 font-title-md text-[14px] sm:text-title-md font-bold text-on-surface hover:text-primary transition-colors">
+                <span class="flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary text-xs flex items-center justify-center shrink-0">Q4</span>
+                  <span>가족요양을 하려면 타 직장에 다니면 안 되나요?</span>
+                </span>
+                <span class="material-symbols-outlined text-primary text-[20px] transition-transform duration-200" id="faq-icon-4">expand_more</span>
+              </button>
+              <div id="faq-ans-4" class="hidden px-4 pb-4 pt-1 text-xs sm:text-body-sm text-on-surface-variant border-t border-outline-variant/20 leading-relaxed bg-white/60">
+                가족요양보호사로 일하시려면 <strong>4대보험에 가입된 다른 직장의 월 근무시간이 160시간 미만</strong>이어야 합니다. 파트타임이나 주 30시간 미만 근무인 경우 겸직이 가능하므로, 자세한 기준은 센터로 문의해 주시면 즉시 적격 여부를 확인해 드립니다.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 1:1 간편 상담 접수 폼 -->
+        <section class="flex flex-col rounded-2xl bg-surface-container-lowest p-6 sm:p-7 shadow-card space-y-5 mb-10 sm:mb-12" id="consult-form">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md font-bold mb-1">
+              <span class="material-symbols-outlined text-[18px]">contact_support</span>
+              부담 없는 무료 상담
+            </div>
+            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">1:1 간편 상담 접수</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">어르신의 상황에 맞게 10분 내로 전문 복지사가 연락드립니다.</span>
+          </div>
+          <form class="flex flex-col space-y-5" id="care-consult-form" onsubmit="handleConsultSubmit(event); return false;">
+            <!-- 보호자 성함 -->
+            <div class="flex flex-col space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="caller-name">보호자(신청인) 성함</label>
+              <div class="relative">
+                <input class="w-full h-13 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="caller-name" name="caller_name" placeholder="홍길동" required="" type="text">
+              </div>
+            </div>
+            <!-- 연락처 -->
+            <div class="flex flex-col space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="caller-phone">연락처</label>
+              <div class="relative">
+                <input class="w-full h-13 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="caller-phone" name="caller_phone" placeholder="010-0000-0000" required="" type="tel">
+              </div>
+            </div>
+            <!-- 문의 내용 분야 선택 (칩 라디오) -->
+            <div class="flex flex-col space-y-2">
+              <span class="font-label-md text-label-md text-on-surface font-semibold">주요 문의 분야</span>
+              <div class="grid grid-cols-2 gap-2.5" id="consult-category-group">
+                <button class="consult-opt h-11 px-3 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold flex items-center justify-between text-left shadow-sm" onclick="selectCategory(this, '방문요양 신청')" type="button">
+                  <span>방문요양 서비스</span>
+                  <span class="material-symbols-outlined text-[18px]">check</span>
+                </button>
+                <button class="consult-opt h-11 px-3 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-between text-left" onclick="selectCategory(this, '등급신청 대행')" type="button">
+                  <span>등급신청 무료대행</span>
+                  <span class="material-symbols-outlined text-[18px] opacity-0">check</span>
+                </button>
+                <button class="consult-opt h-11 px-3 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-between text-left" onclick="selectCategory(this, '가족요양 상담')" type="button">
+                  <span>가족요양 급여</span>
+                  <span class="material-symbols-outlined text-[18px] opacity-0">check</span>
+                </button>
+                <button class="consult-opt h-11 px-3 rounded-xl bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-between text-left" onclick="selectCategory(this, '복지용구/기타')" type="button">
+                  <span>복지용구 및 기타</span>
+                  <span class="material-symbols-outlined text-[18px] opacity-0">check</span>
+                </button>
+              </div>
+            </div>
+            <!-- 간단 메모 -->
+            <div class="flex flex-col space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="consult-memo">어르신 상황 메모 (선택)</label>
+              <textarea class="w-full p-4 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none" id="consult-memo" name="consult_memo" placeholder="예: 거동이 조금 불편하시며 80대 어머니 등급 신청 문의드립니다." rows="3"></textarea>
+            </div>
+            <!-- 개인정보 동의 -->
+            <div class="flex items-center gap-2 pt-1">
+              <input class="w-4 h-4 rounded text-primary focus:ring-0 accent-primary" id="privacy-agree" required="" type="checkbox">
+              <label class="font-body-sm text-[13px] text-on-surface-variant cursor-pointer" for="privacy-agree">
+                <strong class="text-on-surface">[필수]</strong> 개인정보 수집 및 상담 목적 이용에 동의합니다.
+              </label>
+            </div>
+            <!-- 제출 버튼 -->
+            <button class="w-full h-14 rounded-xl bg-secondary text-on-secondary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-md hover:bg-secondary-container active:scale-[0.98] transition-all" type="submit">
+              <span class="material-symbols-outlined text-[24px]">send</span>
+              상담 신청 접수하기
+            </button>
+          </form>
+          <div class="hidden p-4 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center gap-3 animate-fade-in" id="form-success-banner">
+            <span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md font-bold">상담이 안전하게 접수되었습니다.</span>
+              <span class="font-body-sm text-[13px]">이상현 시설장(사회복지사) 및 담당 복지사가 10분 내로 친절히 연락드리겠습니다.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 투명 정보 공개 푸터 영역 -->
+        <section class="flex flex-col rounded-2xl bg-surface-container-high/60 p-5 space-y-2.5 text-on-surface-variant mb-6">
+          <div class="flex items-center justify-between pb-1">
+            <span class="font-label-md text-label-md text-on-surface font-bold">기관 신뢰 및 인허가 정보</span>
+            <span class="bg-surface-container-highest text-on-surface px-2 py-0.5 rounded font-label-md text-[11px] font-semibold">정식인가</span>
+          </div>
+          <div class="flex flex-col space-y-1.5 font-body-sm text-[12px] leading-relaxed">
+            <div><span class="font-semibold text-on-surface">기관명:</span> 진선미 재가장기요양기관 (대표자: 이상현)</div>
+            <div><span class="font-semibold text-on-surface">장기요양기관 지정번호:</span> 제 2-42150-00101호 (국민건강보험공단 공식지정)</div>
+            <div><span class="font-semibold text-on-surface">고유번호:</span> 226-82-68045 | <span class="font-semibold text-on-surface">팩스:</span> 033-662-0002</div>
+            <div><span class="font-semibold text-on-surface">소재지:</span> 강원특별자치도 강릉시 주문진읍 교항원길 39-2 (진선미센터)</div>
+            <div class="text-[11px] pt-1 text-on-surface-variant">© 2026 진선미 재가장기요양기관. All rights reserved.</div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Mobile Bottom Tab Navigation -->
+  <nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-xl border-t border-outline-variant/30 shadow-nav md:hidden" id="mobile-nav">
+    <div class="flex justify-around items-center h-16 max-w-md mx-auto px-2">
+      <button onclick="switchView('home')" data-tab="home" class="mobile-tab-btn flex-1 flex flex-col items-center justify-center h-14 transition-colors text-primary font-bold">
+        <span class="material-symbols-outlined text-[24px]">home</span>
+        <span class="text-[11px] leading-tight mt-0.5">홈</span>
+      </button>
+      <button onclick="switchView('services')" data-tab="services" class="mobile-tab-btn flex-1 flex flex-col items-center justify-center h-14 text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[24px]">volunteer_activism</span>
+        <span class="text-[11px] leading-tight mt-0.5">서비스안내</span>
+      </button>
+      <button onclick="switchView('grade-check')" data-tab="grade-check" class="mobile-tab-btn flex-1 flex flex-col items-center justify-center h-14 text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[24px]">assignment_turned_in</span>
+        <span class="text-[11px] leading-tight mt-0.5">등급신청</span>
+      </button>
+      <button onclick="switchView('contact')" data-tab="contact" class="mobile-tab-btn flex-1 flex flex-col items-center justify-center h-14 text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[24px]">place</span>
+        <span class="text-[11px] leading-tight mt-0.5">상담·위치</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Desktop Footer -->
+  <footer class="hidden md:block bg-surface-container-low border-t border-surface-container text-on-surface-variant py-8 px-6 text-sm">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <p class="font-bold text-primary text-base">진선미 재가장기요양기관</p>
+        <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+          고유번호: 226-82-68045 | 장기요양기관 지정번호: 2-42150-00101<br>
+          주소: 강원특별자치도 강릉시 주문진읍 교항원길 39-2 (진선미센터)<br>
+          대표전화: 033-662-0001 | 팩스: 033-662-0002
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="tel:033-662-0001" class="px-4 py-2 rounded-xl bg-secondary text-white font-bold text-xs flex items-center gap-1 shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">call</span> 전화 바로걸기
+        </a>
+        <a href="https://open.kakao.com/o/glWVgATi" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-[#FEE500] text-[#3C1E1E] font-bold text-xs flex items-center gap-1 shadow-sm hover:brightness-95 transition-all">
+          <span class="material-symbols-outlined text-[16px]">chat</span> 카카오톡 상담 (진선미 공유방)
+        </a>
+      </div>
+    </div>
+    <div class="max-w-5xl mx-auto mt-6 pt-4 border-t border-surface-container text-center text-[11px] text-gray-500">
+      © 2026 진선미 재가장기요양기관. All Rights Reserved. 본 사이트의 디자인 및 콘텐츠는 법적 보호를 받습니다.
+    </div>
+  </footer>
+
+  <!-- Modal: Kakao Talk Guidance -->
+  <div id="kakao-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl flex flex-col items-center text-center transform scale-95 transition-transform duration-200">
+      <div class="w-14 h-14 rounded-full bg-[#FEE500] flex items-center justify-center text-[#3C1E1E] mb-3">
+        <span class="material-symbols-outlined text-[32px]">chat</span>
+      </div>
+      <h3 class="font-bold text-lg text-gray-900 mb-1">카카오톡 1:1 맞춤 상담</h3>
+      <p class="text-xs text-gray-600 mb-4 leading-relaxed">
+        진선미 재가요양 공식 오픈채팅방 <strong>[진선미 공유방]</strong>에서<br>
+        <strong>장기요양 등급 및 본인부담금 혜택</strong>을<br>
+        실시간으로 친절히 안내해 드립니다.
+      </p>
+      <div class="w-full bg-[#f8f9fa] rounded-xl p-3 mb-4 text-left text-xs text-gray-700">
+        <p class="font-semibold text-primary mb-1">카카오톡 오픈채팅방</p>
+        <div class="flex justify-between items-center bg-white border border-gray-200 rounded-lg px-2.5 py-1.5">
+          <span class="font-medium text-xs truncate select-all mr-2 text-gray-800">진선미 공유방</span>
+          <button onclick="copyKakaoLink()" class="text-xs text-secondary font-bold hover:underline shrink-0">링크 복사</button>
+        </div>
+      </div>
+      <div class="flex gap-2 w-full">
+        <button onclick="closeKakaoModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-medium text-xs hover:bg-gray-200 transition-colors">
+          닫기
+        </button>
+        <a href="https://open.kakao.com/o/glWVgATi" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-[#FEE500] text-[#3C1E1E] font-bold text-xs flex items-center justify-center gap-1 hover:bg-[#ebd300] transition-colors">
+          오픈채팅 참여하기
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-20 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-gray-900 text-white px-5 py-3 rounded-full text-xs font-medium shadow-2xl flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300">
+    <span class="material-symbols-outlined text-[18px] text-primary-fixed" id="toast-icon">check_circle</span>
+    <span id="toast-message">알림 메시지</span>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
